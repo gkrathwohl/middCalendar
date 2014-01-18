@@ -25,7 +25,7 @@ else
 while ($row = mysqli_fetch_array($result)) {
  
  //print result
- echo $row['name']."<br>";
+ echo "Name: ".$row['name']."   Location: ".$row['building']."<br>";
 }
 
 
