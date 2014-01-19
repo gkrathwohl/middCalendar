@@ -30,7 +30,7 @@ while ($row = mysqli_fetch_array($result)) {
  
  //print result
 	echo "<a href='./eventInfo.php?eid=".$row['eid']."'>".$row['name']."</a><br>";
- 	echo "Description: ".$row["description"].", Date: ".$row[date]."<br>";
+ 	echo "Date: ".$row[date]."<br>";
  	
 }
 

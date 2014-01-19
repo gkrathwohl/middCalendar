@@ -40,9 +40,9 @@ function validate() {
 </SCRIPT>
 
 <!--This creates the insert boxes-->
-<form action="insert.php" method="post">
+<form action="insert1.php" method="post">
 Search: <input type="text" name="Search"  /> <br> <br>
-<input type="submit" value="Insert into Database"/> <br> <br>
+<input type="submit" value="Search"/> <br> <br>
 </form>
 
 
