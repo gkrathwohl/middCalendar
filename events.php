@@ -9,7 +9,23 @@ define('DB_DATABASE','wschaaf_Calendar');
 
 $con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die("Could not connect");
 
-$sql="SELECT * FROM Events";
+$date = getdate();
+$today = $date['year']."-".$date['mon']."-".$date['mday'];
+$today7 = $date['year']."-".$date['mon']."-".$date['mday'];
+
+
+echo "Today is ".$today."</br>";
+
+
+$date=date_create("$today");
+date_add($date,date_interval_create_from_date_string("6 days"));
+echo "Seven days from now is: ".date_format($date,"Y-m-d")."</br>";
+
+$date1 = date_create("$today");
+
+
+$sql="SELECT * FROM Events WHERE date BETWEEN '".date_format($date1,"Y-m-d")."' AND '".date_format($date,"Y-m-d")."' ";
+
 
 if (!mysqli_query($con,$sql))
 {
@@ -21,24 +37,29 @@ else
  $result = mysqli_query($con,$sql);
 }
 
-echo "Events: <br>";
+echo "</br>Events in the Next 7 days: </br>";
 while ($row = mysqli_fetch_array($result)) {
  
  //print result
  echo "<a href='./eventInfo.php?eid=".$row['eid']."'>".$row['name']."</a><br>";
 }
 
+
 //Create a session varible to store user data
 session_start();
-if(isset($_SESSION['User']))
-	echo "Welcome  .$_SESSION['User']<br>";
-	echo "<a href='./CreateEvent.php'>Create Event</a></br>"
+if(isset($_SESSION['User'])){
+	echo "Welcome  ".$_SESSION['User']."</br>";
+	echo "<a href='./CreateEvent.php'>Create Event</a></br>";
 	echo "<a href='./logout'>Don't forget to logout</a><br>";
-else
+}
+else{
 	$_SESSION['User'] = null;
-	echo "<a href='./login.php'>Log In</a></br>"
-	echo "<a href='./CreateUser.php'>Create User</a></br>"
+	echo "<a href='./login.php'>Log In</a></br>";
+	echo "<a href='./CreateUser.php'>Create User</a></br>";
+}
 	
+
+
 
 //close connection
 mysql_close($con)
@@ -86,6 +107,8 @@ Next seven days:
 </td>
 </tr>
 </table>
+
+
 
 </body>
 </html>
