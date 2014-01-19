@@ -31,7 +31,7 @@ function validate() {
 <!--This creates the insert boxes-->
 <form action="insertEvent.php" method="post">
 	Middlebury ID: <input type="text" name="uid" required /> <br>
-	Name: <input type="text" name="name" required /> <br>
+	Event Name: <input type="text" name="name" required /> <br>
 	Date: <input type="date" name="date" required /> <br>	
 	Time: <input type="time" name="time" required /> <br>
 	Building: <input type="text" name="building" required/> <br>

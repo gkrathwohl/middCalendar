@@ -28,3 +28,11 @@ else {
 	
 }
 ?>
+
+
+<html>
+</br>
+<a href='./events'>Back to events</a>
+
+</html>
+

@@ -16,3 +16,9 @@ if (!mysqli_query($con, $sql)){
 }
 echo "Added event " .$_POST[name];
 ?>
+
+<html>
+</br>
+<a href='./events'>Back to events</a>
+
+</html>
