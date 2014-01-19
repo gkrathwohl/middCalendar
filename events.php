@@ -21,13 +21,24 @@ else
  $result = mysqli_query($con,$sql);
 }
 
-echo "Events: </br>";
+echo "Events: <br>";
 while ($row = mysqli_fetch_array($result)) {
  
  //print result
  echo "<a href='./eventInfo.php?eid=".$row['eid']."'>".$row['name']."</a><br>";
 }
 
+//Create a session varible to store user data
+session_start();
+if(isset($_SESSION['User']))
+	echo "Welcome  .$_SESSION['User']<br>";
+	echo "<a href='./CreateEvent.php'>Create Event</a></br>"
+	echo "<a href='./logout'>Don't forget to logout</a><br>";
+else
+	$_SESSION['User'] = null;
+	echo "<a href='./login.php'>Log In</a></br>"
+	echo "<a href='./CreateUser.php'>Create User</a></br>"
+	
 
 //close connection
 mysql_close($con)
@@ -75,11 +86,6 @@ Next seven days:
 </td>
 </tr>
 </table>
-
-
-<a href='./login.php'>Log In</a></br>
-<a href='./CreateUser.php'>Create User</a></br>
-<a href='./CreateEvent.php'>Create Event</a></br>
 
 </body>
 </html>
