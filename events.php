@@ -44,21 +44,28 @@ while ($row = mysqli_fetch_array($result)) {
  echo "<a href='./eventInfo.php?eid=".$row['eid']."'>".$row['name']."</a><br>";
 }
 
+echo "</br></br><a href='./search.php'>Search Events</a></br>";
 
 //Create a session varible to store user data
-session_start();
+
+$SID = session_id(); 
+if(empty($SID)) session_start() or exit(basename(__FILE__).'(): Could not start session'); 
+
+
 if(isset($_SESSION['User'])){
 	echo "Welcome  ".$_SESSION['User']."</br>";
 	echo "<a href='./CreateEvent.php'>Create Event</a></br>";
 	echo "<a href='./logout'>Don't forget to logout</a><br>";
 }
 else{
+	
 	$_SESSION['User'] = null;
 	echo "<a href='./login.php'>Log In</a></br>";
 	echo "<a href='./CreateUser.php'>Create User</a></br>";
 }
 	
 
+print_r($_SESSION);
 
 
 //close connection

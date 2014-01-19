@@ -11,7 +11,7 @@ $con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die (
 
 $sql = "SELECT * FROM Users WHERE email='$_POST[email]' AND password='$_POST[pw]'";
 
-
+session_start();
 if (!mysqli_query($con, $sql)) {
     die('Error: ' . mysqli_error($con));
 }
@@ -23,8 +23,10 @@ else {
 		echo "Sorry your username or password was incorrect.";
 	}
 	else {
-		echo "Welcome " .$_POST[name];
-		$_SESSION['User'] = $_POST[name];		
+		print_r($_POST);
+		echo "Welcome " .$_POST[email]."</br>";
+		$_SESSION['User'] = $_POST[email];	
+		print_r($_SESSION);	
 	}
 	
 }
