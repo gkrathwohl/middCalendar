@@ -20,13 +20,13 @@ else {
 	$user = mysqli_fetch_array($result);
 	//echo $result;
 	if($user == null) {
-		echo "Sorry your username or password was incorrect.";
+		echo "Sorry your username or password was incorrect.</br>";
 	}
 	else {
 		print_r($_POST);
 		echo "Welcome " .$_POST[email]."</br>";
 		$_SESSION['User'] = $_POST[email];	
-		print_r($_SESSION);	
+		print_r($_SESSION);		
 	}
 	
 }
