@@ -29,8 +29,8 @@ echo $col.":<br>";
 while ($row = mysqli_fetch_array($result)) {
  
  //print result
-
- 	echo "Name: ".$row["name"].", Description: ".$row["description"].", Date: ".$row[date]."<br>";
+	echo "<a href='./eventInfo.php?eid=".$row['eid']."'>".$row['name']."</a><br>";
+ 	echo "Description: ".$row["description"].", Date: ".$row[date]."<br>";
  	
 }
 
