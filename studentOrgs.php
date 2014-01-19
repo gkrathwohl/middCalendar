@@ -21,7 +21,7 @@ else
  $result = mysqli_query($con,$sql);
 }
 
-echo "Events: </br>";
+
 while ($row = mysqli_fetch_array($result)) {
  
  //print result
@@ -34,52 +34,3 @@ mysql_close($con)
 
 
 ?>
-
-<style>
-tr{
-height:100;
-}
-td{
-width:100;
-}
-
-</style>
-
-
-<html>
-<body>
-</br>
-Next seven days:	
-<table border=1>
-<tr>
-<td>
-1
-</td>
-<td>
-2
-</td>
-<td>
-3
-</td>
-<td>
-4
-</td>
-<td>
-5
-</td>
-<td>
-6
-</td>
-<td>
-7
-</td>
-</tr>
-</table>
-
-
-<a href='./login.php'>Log In</a></br>
-<a href='./CreateUser.php'>Create User</a></br>
-<a href='./CreateEvent.php'>Create Event</a></br>
-
-</body>
-</html>
