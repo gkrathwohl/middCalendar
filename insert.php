@@ -15,4 +15,11 @@ if (!mysqli_query($con, $sql)){
     die('Error: ' . mysqli_error($con));
 }
 echo "Added user " .$_POST[name];
+$_SESSION['User'] = $_POST[name];
 ?>
+
+<html>
+</br>
+<a href='./events'>Back to events</a>
+
+</html>
