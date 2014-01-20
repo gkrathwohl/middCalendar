@@ -58,14 +58,23 @@ $byDate[$row['date']][]=$row;
 
 //print_r($byDate);
 
+$days = array('Sunday', 'Monday', 'Tuesday', 'Wednesday','Thursday','Friday', 'Saturday');
+
 echo "</br>";
+echo "<table border=1>";
+echo "<tr>";
 foreach($byDate as $key => $value)
   {
-  echo "</br>".$key."</br>";
+echo "<td>";
+  echo $key."</br>";
+  echo $days[date( "w", strtotime($key))]."</br></br>";
   foreach($value as $event){
 	echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a><br>";
   }
+echo "</td>";
   }
+echo "</tr>";
+echo "</table>";
 
 
 //Display events
@@ -105,39 +114,20 @@ mysql_close($con)
 
 
 ?>
+<style>
+table{
+border=1;
+border-collapse:collapse;
+}
+td{
+vertical-align:top;
+}
+</style>
 <!DOCTYPE HTML>
 <html>
 
 
 <body>
-
-</br>
-Next seven days:	
-<table border=1>
-<tr>
-<td>
-1
-</td>
-<td>
-2
-</td>
-<td>
-3
-</td>
-<td>
-4
-</td>
-<td>
-5
-</td>
-<td>
-6
-</td>
-<td>
-7
-</td>
-</tr>
-</table>
 
 </body>
 </html>
