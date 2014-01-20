@@ -82,7 +82,18 @@ function validate() {
 ?>
 	</select>
 	Room: <input type="text" name="room" required /> <br>
-	Genre: <input type="text" name="genre" required /> <br>
+	
+ <!--This creates the drop down list-->
+        <form name="thisForm" method="POST" action="insertEvent.php">
+        <p>Select Genre: <select size="1" name="my_dropdown">
+        <option value="Dance"> Dance </option>
+        <option value="Party"> Party </option>
+        <option value="Clam Bake"> Clam Bake </option>
+        <option value="Pineapple"> Pineapple </option>
+        <!--<option value="drinking"> drinking </option>-->
+        <option value="sports"> sports </option>
+        </select></p>
+
 	<textarea name="description" rows="5" cols="40" placeholder="Enter description here " required></textarea> <br>
 	<input type="submit" value="Create Event!"/> <br> <br>
 </form>
