@@ -1,7 +1,7 @@
-<!DOCTYPE HTML>
+
 <?php 
 session_start();
-// Print_r ($_SESSION);
+ Print_r ($_SESSION);
 
 
 //set up the connection to the database
@@ -30,13 +30,13 @@ else {
 		echo "Welcome " .$_POST[email]."</br>";
 		$_SESSION['User'] = $_POST[email];	
 		$_SESSION['uid'] = $user['uid'];
-		//print_r($_SESSION);		
+		print_r($_SESSION);		
 	}
 	
 }
 ?>
 
-
+<!DOCTYPE HTML>
 <html>
 </br>
 <a href='./events'>Back to events</a>
