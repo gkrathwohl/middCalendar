@@ -1,4 +1,19 @@
-<?php
+<style>
+tr{
+height:100;
+}
+td{
+width:100;
+}
+
+</style>
+
+<!DOCTYPE HTML>
+
+
+
+<?php 
+session_start();
 
 //set up the connection to the database
 define('DB_SERVER','panther.cs.middlebury.edu');
@@ -14,12 +29,12 @@ $today = $date['year']."-".$date['mon']."-".$date['mday'];
 $today7 = $date['year']."-".$date['mon']."-".$date['mday'];
 
 
-echo "Today is ".$today."</br>";
+//echo "Today is ".$today."</br>";
 
 
 $date=date_create("$today");
 date_add($date,date_interval_create_from_date_string("6 days"));
-echo "Seven days from now is: ".date_format($date,"Y-m-d")."</br>";
+//echo "Seven days from now is: ".date_format($date,"Y-m-d")."</br>";
 
 $date1 = date_create("$today");
 
@@ -48,14 +63,11 @@ echo "</br></br><a href='./search.php'>Search Events</a></br>";
 
 //Create a session varible to store user data
 
-$SID = session_id(); 
-if(empty($SID)) session_start() or exit(basename(__FILE__).'(): Could not start session'); 
-
 
 if(isset($_SESSION['User'])){
 	echo "Welcome  ".$_SESSION['User']."</br>";
 	echo "<a href='./CreateEvent.php'>Create Event</a></br>";
-	echo "<a href='./logout'>Don't forget to logout</a><br>";
+	echo "<a href='./logout.php'>Don't forget to logout</a><br>";
 }
 else{
 	
@@ -65,7 +77,7 @@ else{
 }
 	
 
-print_r($_SESSION);
+//print_r($_SESSION);
 
 
 //close connection
@@ -74,19 +86,11 @@ mysql_close($con)
 
 ?>
 
-<style>
-tr{
-height:100;
-}
-td{
-width:100;
-}
-
-</style>
-
-
 <html>
+
+
 <body>
+
 </br>
 Next seven days:	
 <table border=1>
@@ -114,8 +118,6 @@ Next seven days:
 </td>
 </tr>
 </table>
-
-
 
 </body>
 </html>

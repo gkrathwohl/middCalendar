@@ -1,5 +1,41 @@
-
 <html>
+<?php
+session_start();
+echo "You are currently logged in as ".$_SESSION['User'];
+
+//set up the connection to the database
+define('DB_SERVER','panther.cs.middlebury.edu');
+define('DB_USERNAME','wschaaf');
+define('DB_PASSWORD','wschaaf');
+
+define('DB_DATABASE','wschaaf_Calendar');
+
+$con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die("Could not connect");
+
+$sql="SELECT * FROM Locations";
+
+
+if (!mysqli_query($con,$sql))
+{
+  die('Error: ' . mysqli_error());
+}
+else
+{
+ //execute the SQL query
+ $result = mysqli_query($con,$sql);
+}
+
+echo "</br>";
+
+while ($row = mysqli_fetch_array($result)) {
+ //print result
+ print_r($row['Building']);
+}
+
+
+?>
+
+
 
 <head><title> College Database </title>
 </head>
@@ -30,14 +66,24 @@ function validate() {
 
 <!--This creates the insert boxes-->
 <form action="insertEvent.php" method="post">
-	Middlebury ID: <input type="text" name="uid" required /> <br>
+	Middlebury ID: <input type="text" name="uid" required value =" 
+<?php echo $_SESSION['uid'];
+ ?>
+
+"/> 
+<br>
 	Event Name: <input type="text" name="name" required /> <br>
 	Date: <input type="date" name="date" required /> <br>	
 	Time: <input type="time" name="time" required /> <br>
 	Building: <input type="text" name="building" required/> <br>
+<select>
+<php?
+
+?>
+	</select>
 	Room: <input type="text" name="room" required /> <br>
 	Genre: <input type="text" name="genre" required /> <br>
-	<textarea name="description" rows="5" cols="40" required>Enter description here </textarea> <br>
+	<textarea name="description" rows="5" cols="40" placeholder="Enter description here " required></textarea> <br>
 	<input type="submit" value="Create Event!"/> <br> <br>
 </form>
 
