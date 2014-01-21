@@ -93,7 +93,7 @@ echo "</br></br><a href='./search.php'>Search Events</a></br>";
 
 //if session user is set (from logging in), show link to create event and log out
 if(isset($_SESSION['User'])){
-	echo "Welcome back".$_SESSION['User']."</br>"; //added back will remove it #GK
+	echo "Welcome  ".$_SESSION['User']."</br>";
 	echo "<a href='./CreateEvent.php'>Create Event</a></br>";
 	echo "<a href='./logout.php'>Don't forget to logout</a><br>";
 	echo "<a href='./approveEvents.php'>Approve Events</a></br>";
@@ -112,11 +112,11 @@ else{ //if session user is not set, show link to log in and to create user
 //close connection
 mysql_close($con)
 
-// Changing border to 2 just for kicks. #GK
+
 ?>
 <style>
 table{
-border=2;
+border=1;
 border-collapse:collapse;
 }
 td{
