@@ -98,9 +98,10 @@ echo "<tr>";
 foreach($byDate as $key => $value)
   {
 echo "<td>";
+  echo "<a href='./date.php?date=".$key."'>";
   echo $days[date( "w", strtotime($key))]."</br>";
   echo $months[date( "m", strtotime($key))]." ".date( "d", strtotime($key))."</br></br>";
-  
+  echo "</a>";
   foreach($value as $event){
 	echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a>  ".date('g:i',strtotime($event['time']))."<br>";
   }
