@@ -1,6 +1,8 @@
+<?php session_start(); ?>
+
 <html>
 <?php
-session_start();
+
 echo "You are currently logged in as ".$_SESSION['User'];
 
 //set up the connection to the database
@@ -13,6 +15,7 @@ define('DB_DATABASE','wschaaf_Calendar');
 $con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die("Could not connect");
 
 $sql="SELECT * FROM Locations";
+
 
 if (!mysqli_query($con,$sql))
 {
@@ -30,6 +33,7 @@ while ($row = mysqli_fetch_array($result)) {
  //print result
  print_r($row['Building']);
 }
+
 
 ?>
 
@@ -80,7 +84,7 @@ function validate() {
 ?>
 	</select>
 	Room: <input type="text" name="room" required /> <br>
-
+	
  <!--This creates the drop down list-->
         <form name="thisForm" method="POST" action="insertEvent.php">
         <p>Select Genre: <select size="1" name="my_dropdown">
@@ -88,9 +92,8 @@ function validate() {
         <option value="Party"> Party </option>
         <option value="Clam Bake"> Clam Bake </option>
         <option value="Pineapple"> Pineapple </option>
-        <option value="drinking"> drinking </option>
-         <option value="sports"> sports </option>
-
+        <!--<option value="drinking"> drinking </option>-->
+        <option value="sports"> sports </option>
         </select></p>
 
 	<textarea name="description" rows="5" cols="40" placeholder="Enter description here " required></textarea> <br>

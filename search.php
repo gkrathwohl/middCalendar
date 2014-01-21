@@ -1,4 +1,8 @@
 
+
+<?php session_start(); ?>
+
+
 <?php
 //start PHP section
 

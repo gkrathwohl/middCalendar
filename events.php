@@ -1,5 +1,6 @@
-  <?php 
-session_start();
+<?php session_start(); ?>  
+
+<?php 
 //start session
 //must happen before anything else on the page
 
@@ -58,24 +59,57 @@ $byDate[$row['date']][]=$row;
 
 //print_r($byDate);
 
+
+
+
+echo "<div id='links'>";
+
+//link to search page
+echo "</br></br><a href='./search.php'>Search Events</a></br>";
+
+
+//if session user is set (from logging in), show link to create event and log out
+if(isset($_SESSION['User'])){
+	echo "Welcome  ".$_SESSION['User']."</br>";
+	echo "<a href='./CreateEvent.php'>Create Event</a></br>";
+	echo "<a href='./logout.php'>Don't forget to logout</a><br>";
+	echo "<a href='./approveEvents.php'>Approve Events</a></br>";
+}
+else{ //if session user is not set, show link to log in and to create user
+	$_SESSION['User'] = null;
+	echo "<a href='./login.php'>Log In</a></br>";
+	echo "<a href='./CreateUser.php'>Create User</a></br>";
+}
+echo "</div>";
+
+
+
+
+
+
 $days = array('Sunday', 'Monday', 'Tuesday', 'Wednesday','Thursday','Friday', 'Saturday');
+$months = array('01'=>'January', 'February', 'March', 'April','May','June', 'July', 'August', 'September', 'October', 'November', 'December');
 
 echo "</br>";
-echo "<table border=1>";
+echo "<div id='content'>";
+echo "<div id='table'>";
+echo "<table>";
 echo "<tr>";
 foreach($byDate as $key => $value)
   {
 echo "<td>";
-  echo $key."</br>";
-  echo $days[date( "w", strtotime($key))]."</br></br>";
+  echo $days[date( "w", strtotime($key))]."</br>";
+  echo $months[date( "m", strtotime($key))]." ".date( "d", strtotime($key))."</br></br>";
+  
   foreach($value as $event){
-	echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a><br>";
+	echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a>  ".date('g:i',strtotime($event['time']))."<br>";
   }
 echo "</td>";
   }
 echo "</tr>";
 echo "</table>";
-
+echo "</div>";
+echo "</div>";
 
 //Display events
 //echo "</br>Events in the Next 7 days: </br>";
@@ -87,24 +121,6 @@ echo "</table>";
 
 
 
-//link to search page
-echo "</br></br><a href='./search.php'>Search Events</a></br>";
-
-
-//if session user is set (from logging in), show link to create event and log out
-if(isset($_SESSION['User'])){
-	echo "Welcome back".$_SESSION['User']."</br>"; //added back will remove it #GK
-	echo "<a href='./CreateEvent.php'>Create Event</a></br>";
-	echo "<a href='./logout.php'>Don't forget to logout</a><br>";
-	echo "<a href='./approveEvents.php'>Approve Events</a></br>";
-}
-else{ //if session user is not set, show link to log in and to create user
-	$_SESSION['User'] = null;
-	echo "<a href='./login.php'>Log In</a></br>";
-	echo "<a href='./CreateUser.php'>Create User</a></br>";
-}
-	
-
 //view session data:
 //print_r($_SESSION);
 
@@ -112,21 +128,35 @@ else{ //if session user is not set, show link to log in and to create user
 //close connection
 mysql_close($con)
 
-// Changing border to 2 just for kicks. #GK
+
 ?>
 <style>
+#links{
+float:left;
+width: 200px ;
+}
+#content{
+float:left;
+}
+#table{
+  width: 1100px ;
+  margin-left: auto ;
+  margin-right: auto ;
+
+}
 table{
-border=2;
-border-collapse:collapse;
+text-align:center;
 }
 td{
 vertical-align:top;
+text-align:left;
+width:200;
 }
 </style>
 <!DOCTYPE HTML>
 <html>
 
-
+<title> Midd Events </title>
 <body>
 
 </body>

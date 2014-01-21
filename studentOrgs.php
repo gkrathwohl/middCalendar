@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <?php
 
 //set up the connection to the database

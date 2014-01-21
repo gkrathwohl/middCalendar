@@ -1,19 +1,19 @@
-
+<?php session_start(); ?>
 <html>
 
 <head><title> College Database </title>
 </head>
 
 <body>
-
+<div id='content'>
 <br>
 
 Create an Account:
 Please use a different password from your Middlebury account
-
+</div>
 <br> <br>
 
-
+<div id='content1'>
 <SCRIPT LANGUAGE="javascript">
 function validate() {
 
@@ -30,15 +30,26 @@ function validate() {
 
 <!--This creates the insert boxes-->
 <form action="insert.php" method="post">
-	Name: <input type="text" name="name" required /> <br>
-	Email: <input type="text" name="email" required /> <br>
-	Middlebury College ID: <input type="text" name="uid" required /> <br>
-	Password: <input type="password" name="pw" required /> <br>
-	<input type="submit" value="Insert into Database"/> <br> <br>
+	<input type="text" name="name" placeholder="Name" required /> <br>
+	<input type="text" name="email" placeholder="Email" required /> <br>
+	<input type="text" name="uid" required placeholder="Middlebury College ID"/> <br>
+	<input type="password" name="pw" placeholder="Password" required /> <br>
+	<input type="submit" value="Create User"/> <br> <br>
 </form>
-
+</div>
 </body>
 
 </html>
-
+<style>
+#content {
+  width: 500px ;
+  margin-left: auto ;
+  margin-right: auto ;
+}
+#content1 {
+  width: 200px ;
+  margin-left: auto ;
+  margin-right: auto ;
+}
+</style>
 

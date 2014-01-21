@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <?php 
 session_start();
 
@@ -25,10 +27,14 @@ else
 }
 
 echo "</br>All unapproved events (where date > curdate): </br>";
+if(count($results) == 0){
+echo "There are no unapproved events";
+}else{
 while ($row = mysqli_fetch_array($result)) {
  
  //print result
  echo "<a href='./eventInfo.php?eid=".$row['eid']."'>".$row['name']."</a> <a href='./approve.php?eid=".$row['eid']."'>Approve</a> <br>";
+}
 }
 
 ?>
