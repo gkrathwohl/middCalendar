@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <html>
 <head>
-	<title>  </title>
+	<title> Create User </title>
 </head>
 
 <body>
