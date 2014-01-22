@@ -67,13 +67,13 @@
 		<form action="insert.php" method="post">
 			<input type="text" name="name" placeholder="Name" required /> <br>
 			<div class="fieldWrapper">
-			    <input name="email" id="email" placeholder="Email" onkeyup="checkEmail(); return false;" type="text" required>
+			    <input type= "text" name="email" id="email" placeholder="Email" onkeyup="checkEmail(); return false;" type="text" required>
 			    <span id="emailConfirm" class="confirmMessage"></span>
 			</div>
 			<input type="text" name="uid" placeholder="Middlebury College ID" required /> <br>
-		    <input name="pw" id="pass1" type="password" placeholder="Password" required> <br>
+		    <input type="password" name="pw" id="pass1" placeholder="Password" required> <br>
 			<div class="fieldWrapper">
-			    <input name="pass2" id="pass2" placeholder="Confirm Password" onkeyup="checkPass(); return false;" type="password" required>
+			    <input type="password" name="pass2" id="pass2" placeholder="Confirm Password" onkeyup="checkPass(); return false;" type="password" required>
 			    <span id="passwordConfirm" class="confirmMessage"></span>
 			</div>
 			<input type="hidden" id="submit" value="Create User!"/>	
