@@ -38,13 +38,12 @@ echo "</br>";
 echo "<form action=insertMember.php method='post' id='newMember'>";
 echo "<select name='user' form='newMember'><option>Select User</option>";
 while ($row = mysqli_fetch_array($result)) {
- echo "<option value='".$row[name]."'>".$row[name]."</option>";
+ echo "<option value='".$row[uid]."&".$row[name]."'>".$row[name]."</option>";
 }
 echo "</select>";
 
 
-$sql="SELECT * FROM Organizations WHERE uid=".$_SESSION[uid];
-
+$sql="SELECT orgName FROM BelongsTo WHERE uid=".$_SESSION[uid];
 if (!mysqli_query($con,$sql))
 {
   die('Error: ' . mysqli_error());
@@ -57,8 +56,9 @@ else
 
 echo "</br>";
 echo "<select name='org' form='newMember'><option>Select Organization</option>";
+
 while ($row = mysqli_fetch_array($result)) {
- echo "<option value='".$row[name]."'>".$row[name]."</option>";
+ echo "<option value='".$row[orgName]."&".$row[description]."'>".$row[orgName]."</option>";
 }
 echo "</select></br><input type='submit' value='Add member to organization!'/>";
 

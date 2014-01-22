@@ -64,22 +64,27 @@ $byDate[$row['date']][]=$row;
 
 echo "<div id='links'>";
 
-//link to search page
-echo "</br></br><a href='./search.php'>Search Events</a></br>";
 
+echo "</br>";
 
 //if session user is set (from logging in), show link to create event and log out
 if(isset($_SESSION['User'])){
 	echo "Welcome  ".$_SESSION['User']."</br>";
 	echo "<a href='./CreateEvent.php'>Create Event</a></br>";
-	echo "<a href='./logout.php'>Don't forget to logout</a><br>";
+	echo "<a href='./CreateOrganization.php'>Create Organization</a></br>";
+	echo "<a href='./addMembers.php'>Add Members to Org</a></br>";
 	echo "<a href='./approveEvents.php'>Approve Events</a></br>";
+	echo "<a href='./logout.php'>Don't forget to logout</a><br>";
 }
 else{ //if session user is not set, show link to log in and to create user
 	$_SESSION['User'] = null;
 	echo "<a href='./login.php'>Log In</a></br>";
 	echo "<a href='./CreateUser.php'>Create User</a></br>";
 }
+
+//link to search page
+echo "</br></br><a href='./search.php'>Search Events</a></br>";
+
 echo "</div>";
 
 

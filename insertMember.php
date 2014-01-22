@@ -13,13 +13,19 @@ define('DB_DATABASE', 'wschaaf_Calendar');
 
 $con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die ("could not connect");
 
-$sql="INSERT INTO Organization (name, description, uid) VALUES ('$_POST[org]','','$_POST[user]')";
+$org_info = explode("&",$_POST[org]);
+$member_info = explode("&",$_POST[user]);
+
+
+
+$sql="INSERT INTO BelongsTo (orgName, uid) VALUES ('$org_info[0]','$member_info[0]')";
 
 if (!mysqli_query($con, $sql)){
     die('Error: ' . mysqli_error($con));
 }
 
-echo "Added user " .$_POST[user]." to organization " .$_POST[org]."</br>";
+$org_name = explode("&",$_POST[org]);
+echo "Added user " .$member_info[1]." to organization " .$org_info[0]."</br>";
 
 ?>
 
