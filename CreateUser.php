@@ -76,7 +76,7 @@
 			} 
 		</SCRIPT>
 		<!--This creates the insert boxes-->
-		<form action="insert.php" method="post">
+		<form action="insertUser.php" method="post">
 			<input type="text" name="name" placeholder="Name" required /> <br>
 			<div class="fieldWrapper">
 			    <input type= "text" name="email" id="email" placeholder="Email" onkeyup="checkEmail(); return false;" type="text" required>
