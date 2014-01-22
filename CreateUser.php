@@ -83,7 +83,7 @@
 			    <span id="emailConfirm" class="confirmMessage"></span>
 			</div>
 			<input type="text" name="uid" placeholder="Middlebury College ID" required /> <br>
-		    <input type="password" name="pw" id="pass1" placeholder="Password" required> <br>
+		    	<input type="password" name="pw" id="pass1" placeholder="Password" required> <br>
 			<div class="fieldWrapper">
 			    <input type="password" name="pass2" id="pass2" placeholder="Confirm Password" onkeyup="checkPass(); return false;" type="password" required>
 			    <span id="passwordConfirm" class="confirmMessage"></span>
