@@ -23,12 +23,12 @@ $date1 = date_create("$today");
 
 //make array of week
 $t = date_create("$today");
+$byDate[date_format($t,"Y-m-d")][]=' ';
 for ($x=1; $x<=6; $x++)
   {
    date_add($t,date_interval_create_from_date_string("1 days"));
-   $days[]=date_format($t,"Y-m-d");
+   $byDate[date_format($t,"Y-m-d")][]=' ';
   } 
-//print_r($days);
 
 //get date 6 days from today (to create a week, including today)
 $date=date_create("$today");
@@ -109,6 +109,10 @@ echo "<td>";
   echo $days[date( "w", strtotime($key))]."</br>";
   echo $months[date( "m", strtotime($key))]." ".date( "d", strtotime($key))."</br></br>";
   echo "</a>";
+  //array shift removes first value of array, which kept being current time for some reason.
+  array_shift($value);
+
+  //print out each event that occurs on day, as a link to more details
   foreach($value as $event){
 	echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a>  ".date('g:i',strtotime($event['time']))."<br>";
   }
