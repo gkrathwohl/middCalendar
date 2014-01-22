@@ -9,7 +9,7 @@
 	  margin-right: auto ;
 	}
 	#content1 {
-	  width: 200px ;
+	  width: 400px ;
 	  margin-left: auto ;
 	  margin-right: auto ;
 	}
