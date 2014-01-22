@@ -17,7 +17,7 @@ else{
 
 	$sql="INSERT INTO Organizations (name, description) VALUES ('$_POST[name]','$_POST[description]')";
 
-	$sql2="INSERT INTO BelongsTo (orgName, uid) VALUES ('$_POST[name]','$_SESSION[uid]')";
+	$sql2="INSERT INTO BelongsTo (orgName, uid) VALUES ('$_POST[name]','$_POST[uid]')";
 
 	if (!mysqli_query($con, $sql)){
 		die('Error: ' . mysqli_error($con));
