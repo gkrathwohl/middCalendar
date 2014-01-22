@@ -2,6 +2,18 @@
 <html>
 <head>
 	<title> Create User </title>
+	<style>
+	#content {
+	  width: 500px ;
+	  margin-left: auto ;
+	  margin-right: auto ;
+	}
+	#content1 {
+	  width: 200px ;
+	  margin-left: auto ;
+	  margin-right: auto ;
+	}
+	</style>
 </head>
 
 <body>
@@ -83,16 +95,5 @@
 </body>
 
 </html>
-<style>
-#content {
-  width: 500px ;
-  margin-left: auto ;
-  margin-right: auto ;
-}
-#content1 {
-  width: 200px ;
-  margin-left: auto ;
-  margin-right: auto ;
-}
-</style>
+
 
