@@ -12,6 +12,57 @@ define('DB_USERNAME', 'wschaaf');
 define('DB_PASSWORD', 'wschaaf');
 define('DB_DATABASE', 'wschaaf_Calendar');
 
+/*
+$mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+
+	$stmt = $mysqli->prepare("SELECT * FROM Users WHERE email=? AND password=?");
+
+	if (!$stmt){
+		echo "Prepare failed: (".$mysqli->errno . ") ".$mysqli->error;
+	}
+
+
+	$email = $_POST[email];
+	$password = $_POST[pw];
+
+
+
+	if (!$stmt->bind_param("ss",$email,$password)){
+		echo "Binding parameters failed: (" . $stmt->errno . ")".$stmt->error;
+	}
+	if (!$stmt->execute()){
+		echo "Execute failed: (" . $stmt->errno . ")".$stmt->error;
+	}else{
+		  $result = mysqli_query($con, $stmt);
+		  print_r($stmt);
+		  $user = mysqli_fetch_array($result);
+		  //print_r($user);
+		  if($user == null) {
+			  echo "Sorry your username or password was incorrect.</br>";
+		  }
+		  else {
+			  //print_r($_POST);
+			  echo "Welcome " .$_POST[email]."</br>";
+			  $_SESSION['User'] = $_POST[email];	
+			  $_SESSION['uid'] = $user['uid'];
+			  //print_r($_SESSION);		
+		  }
+	}
+
+
+
+
+
+
+
+
+
+*/
+
+
+
+
+
 $con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die ("could not connect");
 
 $sql = "SELECT * FROM Users WHERE email='$_POST[email]' AND password='$_POST[pw]'";
