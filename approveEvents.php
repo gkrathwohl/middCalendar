@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 
 <?php 
-session_start();
+
 
 //set up the connection to the database
 define('DB_SERVER','panther.cs.middlebury.edu');
@@ -13,7 +13,9 @@ define('DB_DATABASE','wschaaf_Calendar');
 $con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die("Could not connect");
 
 
-$sql="SELECT * FROM Events WHERE date > CURDATE() AND approved = 0";
+$sql="SELECT * FROM Events WHERE date >= CURDATE() AND approved = 0";
+
+
 
 
 if (!mysqli_query($con,$sql))
@@ -26,8 +28,10 @@ else
  $result = mysqli_query($con,$sql);
 }
 
-echo "</br>All unapproved events (where date > curdate): </br>";
-if(count($results) == 0){
+
+
+echo "</br>All unapproved events (where date >= curdate): </br>";
+if(count($result) == 0){
 echo "There are no unapproved events";
 }else{
 while ($row = mysqli_fetch_array($result)) {

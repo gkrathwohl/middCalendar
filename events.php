@@ -50,6 +50,8 @@ else
 }
 
 
+//$byDate needs to be initialized first so that days with no events still show up...
+
 echo "</br>Events in the Next 7 days: </br>";
 while ($row = mysqli_fetch_array($result)) {
  //for each event, display its name as a link to detailed event info, with eid in the url

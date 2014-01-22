@@ -17,6 +17,19 @@ $con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die("
 $sql="SELECT * FROM Locations";
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 if (!mysqli_query($con,$sql))
 {
   die('Error: ' . mysqli_error());
@@ -31,7 +44,7 @@ echo "</br>";
 
 while ($row = mysqli_fetch_array($result)) {
  //print result
- print_r($row['Building']);
+ //print_r($row['Building']);
 }
 
 
@@ -39,7 +52,7 @@ while ($row = mysqli_fetch_array($result)) {
 
 
 
-<head><title> College Database </title>
+<head><title> Midd Events </title>
 </head>
 
 <body>
@@ -67,8 +80,8 @@ function validate() {
 </SCRIPT>
 
 <!--This creates the insert boxes-->
-<form action="insertEvent.php" method="post">
-	Middlebury ID: <input type="text" name="uid" required value =" 
+<form action="insertEvent.php" id='newMember' method="post">
+	<input type="text" name="uid" required hidden value =" 
 <?php echo $_SESSION['uid'];
  ?>
 
@@ -95,6 +108,31 @@ function validate() {
         <!--<option value="drinking"> drinking </option>-->
         <option value="sports"> sports </option>
         </select></p>
+
+
+<?php
+$sql="SELECT * FROM Organizations";
+
+if (!mysqli_query($con,$sql))
+{
+  die('Error: ' . mysqli_error());
+}
+else
+{
+ //execute the SQL query
+ $result = mysqli_query($con,$sql);
+}
+
+echo "</br>";
+echo "<select name='orgName' form='newMember'><option>Select Organization</option>";
+while ($row = mysqli_fetch_array($result)) {
+ echo "<option value='".$row[name]."'>".$row[name]."</option>";
+}
+echo "</select>";
+?>
+</br>
+
+
 
 	<textarea name="description" rows="5" cols="40" placeholder="Enter description here " required></textarea> <br>
 	<input type="submit" value="Create Event!"/> <br> <br>
