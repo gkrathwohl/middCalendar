@@ -71,11 +71,11 @@ echo "</br>";
 
 //if session user is set (from logging in), show link to create event and log out
 if(isset($_SESSION['User'])){
-	echo "Welcome  ".$_SESSION['User']."</br>";
-	echo "<a href='./CreateEvent.php'>Create Event</a></br>";
-	echo "<a href='./CreateOrganization.php'>Create Organization</a></br>";
-	echo "<a href='./addMembers.php'>Add Members to Org</a></br>";
-	$sql2="SELECT supervisor FROM Users WHERE uid = '$_SESSION[uid]'";
+        echo "Welcome  ".$_SESSION['User']."</br>";
+        echo "<a href='./CreateEvent.php'>Create Event</a></br>";
+        echo "<a href='./CreateOrganization.php'>Create Organization</a></br>";
+        echo "<a href='./addMembers.php'>Add Members to Org</a></br>";
+        $sql2="SELECT supervisor FROM Users WHERE uid = '$_SESSION[uid]'";
   if (!mysqli_query($con,$sql2))
   {
     die('Error: ' . mysqli_error());
@@ -84,21 +84,21 @@ if(isset($_SESSION['User'])){
   {
  //execute the SQL query
     $result2 = mysqli_query($con,$sql2);
-	
+        
   }
-	
-	$row = mysqli_fetch_array($result2);
+        
+        $row = mysqli_fetch_array($result2);
       if($row['supervisor']==1){
-	
-     	 echo "<a href='./approveEvents.php'>Approve Events</a></br>";
+        
+              echo "<a href='./approveEvents.php'>Approve Events</a></br>";
       }
  
-	echo "<a href='./logout.php'>Don't forget to logout</a><br>";
+        echo "<a href='./logout.php'>Don't forget to logout</a><br>";
 }
 else{ //if session user is not set, show link to log in and to create user
-	$_SESSION['User'] = null;
-	echo "<a href='./login.php'>Log In</a></br>";
-	echo "<a href='./CreateUser.php'>Create User</a></br>";
+        $_SESSION['User'] = null;
+        echo "<a href='./login.php'>Log In</a></br>";
+        echo "<a href='./CreateUser.php'>Create User</a></br>";
 }
 
 //link to search page
@@ -116,22 +116,23 @@ $months = array('01'=>'January', 'February', 'March', 'April','May','June', 'Jul
 
 echo "</br>";
 echo "<div id='content'>";
-echo "<div id='table'>";
+echo "<div id='table1'>";
 echo "<table>";
 echo "<tr>";
 foreach($byDate as $key => $value)
   {
 echo "<td>";
-  echo "<a href='./date.php?date=".$key."'>";
+  echo "<div class = 'date'>";
+  echo "<a href='./date.php?date=".$key."' >";
   echo $days[date( "w", strtotime($key))]."</br>";
   echo $months[date( "m", strtotime($key))]." ".date( "d", strtotime($key))."</br></br>";
-  echo "</a>";
+  echo "</a></div>";
   //array shift removes first value of array, which kept being current time for some reason.
   array_shift($value);
 
   //print out each event that occurs on day, as a link to more details
   foreach($value as $event){
-	echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a>  ".date('g:i',strtotime($event['time']))."<br>";
+        echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a>  ".date('g:i',strtotime($event['time']))."<br>";
   }
 echo "</td>";
   }
@@ -160,6 +161,14 @@ mysql_close($con)
 
 ?>
 <style>
+
+a:visited, a:link{
+color:#0066CC;
+}
+
+a{
+font-size:20;
+}
 #links{
 float:left;
 width: 200px ;
@@ -167,20 +176,28 @@ width: 200px ;
 #content{
 float:left;
 }
-#table{
+#table1{
   width: 1100px ;
   margin-left: auto ;
   margin-right: auto ;
-
 }
-table{
+div.date a:link,div.date a:visited{
+text-transform:uppercase;
+font-weight:bold;
+color:#0066CC;
+}
+
+table, th, td
+{
+border: 1px solid black;
 text-align:center;
 }
 td{
 vertical-align:top;
-text-align:left;
 width:200;
 }
+
+
 </style>
 <!DOCTYPE HTML>
 <html>
