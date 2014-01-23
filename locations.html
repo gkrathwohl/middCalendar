@@ -1,0 +1,220 @@
+
+
+<!doctype html>
+<html lang="en">
+
+<div id=locs hidden>Hebrew House
+DKE Alumni House
+118 South Main Street
+Gifford Hall
+107 Shannon Street
+51 Franklin Street (French House)
+Atwater Residence Halls
+Allen Hall
+99 Adirondack View (Russian House)
+97 Adirondack (PALANA)
+82 Adirondack View
+20 Adirondack View (Japanese House)
+33 Adirondack View
+Prescott House
+Milliken Hall
+Lang Hall
+Weybridge House
+Starr Hall
+Sperry House (Arabic House)
+70 Hillcrest Road (Queer Studies House)
+236 College Street (Portuguese House)
+Perkins (Spanish House)
+Pearsons Hall
+Palmer House
+Painter Hall
+Munford House
+Cousteau
+Earhart
+Norgay
+Peary
+Ride
+Longwell House (Italian House)
+LaForce Hall
+Kelly Hall
+Jewett House
+Homestead House
+Hepburn Hall
+Hadley Hall
+Forest Hall
+Max Kade Center for German Studies (German House)
+Coffrin Hall
+Le Chateau
+Brackett House (Tavern)
+Brooker House
+Bowker House (Xenia)
+248 College Street
+77 Main Street
+Center for the Arts
+Robert A. Jones &#039;59 House
+Meeker House
+Voter Hall
+Ross Tower
+108 South Main Street (Chinese House)
+Solar Decathlon House
+Service Building
+McCullough Student Center
+Adirondack House
+Mill
+Homer Harris House
+Turner House
+Kappa Delta Rho (KDR)
+Porter House
+637 College Street
+Stewart Hall
+Battell Hall
+Munroe Hall
+Sunderland Language Center
+McCardell Bicentennial Hall
+Davis Family Library
+The Axinn Center at Starr Library
+Johnson Memorial Building
+Ross Dining Hall
+Atwater Commons Dining Hall
+Franklin Environmental Center at Hillcrest
+Carr Hall
+Alexander Twilight Hall
+Snow Bowl
+Kitchel House
+Old Chapel
+Mead Memorial Chapel
+Proctor Hall
+Recycling Center
+Organic Garden
+Kohn All Weather Field
+Dragone Track &amp; Field Complex
+Nelson Recreation Center
+Fitness Center
+Bio Mass Gasification Plant
+Natatorium
+Kenyon Arena
+President&#039;s House
+School House
+Myhre&#039;s Cabin
+Burdick
+Old Court House
+26 Blinn Lane
+594 Weybridge Street
+Gilmore Cottage
+Hathaway House
+Davis Hall
+Homer Noble (Frost) Farm
+Milkhouse
+St. Mary&#039;s
+Painter House
+149 Shannon Street
+Earthworm
+Dragon&#039;s Den
+The Barn at Bread Loaf
+Brandy Brook
+The Annex
+Bread Loaf Inn
+Tamarak
+Caretaker&#039;s Cottage
+Larch
+Davison Library
+Burgess Meredith Little Theatre
+Fritz
+Maris
+Cornwall
+Cherry
+Bridgman
+Treman
+Birch
+Frothingham
+Maple
+82 Weybridge Street
+75 Franklin Street
+30 College Street
+220 College Street
+204 College Street
+1229 South Street Extension
+119 South Main Street
+110 South Main Street
+105 South Main Street
+102 South Main Street
+100 South Main Street
+Kirk Alumni Center
+McKinley House
+Hadley House/Barn
+Alumni Stadium
+Pepin Gymnasium
+Memorial Field House
+Emma Willard House
+Fletcher House
+Ilsley Public Library
+242 College Street
+Dana Auditorium
+Wright Memorial Theatre
+Freeman International Center
+132 Blinn Lane
+115 Franklin Street
+Centeno House
+Warner Hall
+Farrell House
+Chellis House
+Harris Farm House
+23 Adirondack View
+Battell Beach
+Bread Loaf Campus
+Rikert Ski Touring Center
+Nichols House
+Youngman Field
+The Bubble
+Cross Country Trail
+125 South Main Street
+Hesselgrave House
+46 South Street
+Proctor Tennis Courts
+West Cemetery
+Paddle Tennis Courts
+Henry Sheldon Museum
+College Street Child Center
+General Field
+Ralph Myhre Golf Course
+Marble Works Offices
+Lighted Field
+Lang Field
+Atwater Tennis Courts
+Forbes Baseball Field
+121A South Main Street
+Men&#039;s Soccer Field
+161 Adirondack View
+Softball Field
+
+</div>
+
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Autocomplete - Default functionality</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    var availableTags = document.getElementById("locs").innerHTML.split('\n');;
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  });
+  </script>
+</head>
+<body>
+ 
+<div class="ui-widget">
+  <label for="tags">Tags: </label>
+  <input id="tags">
+</div>
+ 
+ 
+</body>
+</html>
+
+
+
