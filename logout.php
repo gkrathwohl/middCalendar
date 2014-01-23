@@ -1,17 +1,18 @@
-<?php session_start(); ?>
-
- <?php 
- // this starts the session 
- session_start(); 
- 
- // this sets variables in the session 
-session_destroy();
- 
- print "Logged out";
- ?> 
+<?php 
+   	//Resumes the session
+   	session_start();
+   	//Destroys the session
+   	session_destroy();
+   	print "Thanks you for Logging out.";
+?> 
 
 <html>
-</br>
-<a href='./events'>Back to events</a>
+<head>
+ 	  <title>Logout</title>
+</head>
 
+<body>
+   	</br>
+   	<a href='./events'>Back to events</a>
+</body>
 </html>
