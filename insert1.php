@@ -9,7 +9,7 @@
 	define('DB_DATABASE', 'wschaaf_Calendar');
 	$search = htmlspecialchars($_POST[Search]);
 	$con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die ("could not connect");
-	$sql="SELECT * FROM Events WHERE name LIKE '%search%'";
+	$sql="SELECT * FROM Events WHERE name LIKE '%$search%'";
 	if (!mysqli_query($con, $sql)) {
 		die('Error: ' . mysqli_error($con));
 	}
