@@ -75,7 +75,24 @@ if(isset($_SESSION['User'])){
 	echo "<a href='./CreateEvent.php'>Create Event</a></br>";
 	echo "<a href='./CreateOrganization.php'>Create Organization</a></br>";
 	echo "<a href='./addMembers.php'>Add Members to Org</a></br>";
-	echo "<a href='./approveEvents.php'>Approve Events</a></br>";
+	$sql2="SELECT supervisor FROM Users WHERE uid = '$_SESSION[uid]'";
+  if (!mysqli_query($con,$sql2))
+  {
+    die('Error: ' . mysqli_error());
+  }
+  else
+  {
+ //execute the SQL query
+    $result2 = mysqli_query($con,$sql2);
+	
+  }
+	
+	$row = mysqli_fetch_array($result2);
+      if($row['supervisor']==1){
+	
+     	 echo "<a href='./approveEvents.php'>Approve Events</a></br>";
+      }
+ 
 	echo "<a href='./logout.php'>Don't forget to logout</a><br>";
 }
 else{ //if session user is not set, show link to log in and to create user
