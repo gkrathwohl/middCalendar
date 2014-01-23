@@ -25,7 +25,7 @@ define('DB_DATABASE', 'wschaaf_Calendar');
 	    $genre = htmlspecialchars($_POST[genre]);
 	    $date = htmlspecialchars($_POST[date]);
 	    $orgName = htmlspecialchars($_POST[orgName]);
-	echo $genre;
+	
 	if (!$stmt->bind_param("sssssdsss",$name,$time,$desc,$building,$room,$uid,$genre,$date,$orgName)){
 		echo "Binding parameters failed: (" . $stmt->errno . ")".$stmt->error;
 	}
