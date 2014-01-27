@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <html>
 <head>
 	<title>Create Event</title>
@@ -19,7 +17,7 @@
 			<option value="Party"> Party </option>
 			<option value="Clam Bake"> Clam Bake </option>
 			<option value="Pineapple"> Pineapple </option>
-			<option value="sports"> sports </option>
+			<option value="Sports"> Sports </option>
 		</select> <br>
 		Organization: <select name='orgName' form='newEvent'>
 			<?php
@@ -27,8 +25,8 @@
 				define('DB_USERNAME','wschaaf');
 				define('DB_PASSWORD','wschaaf');
 				define('DB_DATABASE','wschaaf_Calendar');
-				$con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die("Could not connect");
-				$sql="SELECT * FROM Organizations";
+				$con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die("Could not connect");				
+				$sql="SELECT * FROM BelongsTo WHERE uid='".$_SESSION['uid']."'";
 				if (!mysqli_query($con,$sql)) {
 					die('Error: ' . mysqli_error());
 				}
@@ -37,7 +35,7 @@
 				}
 				echo "";
 				while ($row = mysqli_fetch_array($result)) {
-					echo "<option value='".$row[name]."'>".$row[name]."</option>";
+					echo "<option value='".$row[orgName]."'>".$row[orgName]."</option>";
 				}
 			?>
 		</select><br>
@@ -47,5 +45,4 @@
 </body>
 
 </html>
-
 
