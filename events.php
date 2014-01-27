@@ -94,10 +94,30 @@
 
 
 <!DOCTYPE HTML>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <title> Midd Events </title>
 <html>
 
 
+<script>
+
+$(document).ready(function() {
+
+    $('#checkbox1').change(function() {
+      if ($(this).is(':checked')) {
+          $('.OldCalendar').hide();
+
+        }else{
+	  $('.OldCalendar').show();
+}
+   
+    });
+
+});
+
+</script>
+
+Show events from official midd calendar<input type="checkbox" id="checkbox1" />
       
 	<form method="POST" action="insert1.php">
 	Search: <input type="text" name="Search" /> <br> <br>
@@ -141,7 +161,9 @@
 			array_shift($value);
 			//print out each event that occurs on day, as a link to more details
 			foreach($value as $event){
+				echo "<div class='".$event['genre']."'>";
 				echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a> ".date('g:i',strtotime($event['time']))."<br>";
+				echo "</div>";
 			}
 			echo "</td>";
 		}
