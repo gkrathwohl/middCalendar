@@ -10,18 +10,19 @@ $(document).ready(function(){
   
 $(".genres").each(function(){
 //alert("hi");
-    this.change(function() {
-	alert("hi");
-    //  if (!$(this).is(':checked')) {
-     //     $((this).attr('id')).hide();
-     //   }else{
-//	  $((this).attr('id')).show();
-    //  }
+    $(this).change(function() {
+      a = $(this).attr('id');
+      //alert(a);
+  
+      if (!$(this).is(':checked')) {
+         // $('.OldCalendar').hide();
+	  $("."+a).hide();
+        }else{
+	  $("."+a).show();
+	  //alert(".'"+a+"'");
+      }
    
     });
-
-
-
   });
 });
 
@@ -157,10 +158,10 @@ $(".genres").each(function(){
 <div id='content'>
 <div id='genres'>
 Administrations's Calendar<input type="checkbox" id="OldCalendar" class="genres" checked/>
+Dance<input type="checkbox" id="Dance" class="genres" checked/>
+Clam Bake<input type="checkbox" id="Clam Bake" class="genres" checked/>
 Dance<input type="checkbox" id="dance" class="genres" checked/>
-Clam Bake<input type="checkbox" id="clams" checked/>
-Dance<input type="checkbox" id="dance" class="genres" checked/>
-Dance<input type="checkbox" id="checkbox1" class="genres" checked/>
+Dance<input type="checkbox" id="check" class="genres" checked/>
 Dance<input type="checkbox" id="checkbox1" class="genres" checked/>
 Dance<input type="checkbox" id="checkbox1" class="genres" checked/>
 </div>
