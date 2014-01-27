@@ -69,7 +69,7 @@ $(".genres").each(function(){
 	//echo "Seven days from now is: ".date_format($date,"Y-m-d")."</br>";
 
 	//sql query selects all events between today's date and 6 days from now
-	$sql="SELECT * FROM Events WHERE date BETWEEN '".date_format($date1,"Y-m-d")."' AND '".date_format($date,"Y-m-d")."' AND approved=1 Order by date, time";
+	$sql="SELECT * FROM Events WHERE date BETWEEN '".date_format($date1,"Y-m-d")."' AND '".date_format($date,"Y-m-d")."' AND approved=1 Order BY date, time";
 
 
 	if (!mysqli_query($con,$sql))
@@ -187,7 +187,13 @@ Dance<input type="checkbox" id="checkbox1" class="genres" checked/>
 			//print out each event that occurs on day, as a link to more details
 			foreach($value as $event){
 				echo "<div class='".$event['genre']."'>";
-				echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a> ".date('g:i',strtotime($event['time']))."<br>";
+				
+				echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a> </br>".date('g:i A',strtotime($event['time']))."<br>";
+				//echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a> ".date("l jS \of F Y h:i:s A",strtotime($event['time']))."<br>";
+
+				 echo "<div class = 'description'>".substr($event['description'],0,15)."...</div></br>";
+
+
 				echo "</div>";
 			}
 			echo "</td>";
