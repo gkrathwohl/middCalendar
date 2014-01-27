@@ -32,7 +32,7 @@ else
 
 while ($row = mysqli_fetch_array($result)) {
  //print result
- echo "Name: ".$row['name']."  </br> Location: ".$row['building']."  </br> Date: ".$row['date']."  </br> Time: ".$row['time']." </br> Genre: ".$row['genre']." </br> Description: ".$row['description'];
+ echo "Name: ".$row['name']."  </br> Location: ".$row['location']."  </br> Date: ".$row['date']."  </br> Time: ".$row['time']." </br> Genre: ".$row['genre']." </br> Description: ".$row['description'];
 }
 
 
@@ -41,6 +41,7 @@ while ($row = mysqli_fetch_array($result)) {
 
 
 <html>
+
 </br>
 <a href='./events'>Back to events</a>
 
