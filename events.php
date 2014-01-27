@@ -66,7 +66,7 @@
 	if(isset($_SESSION['User'])){
 	    echo "Welcome ".$_SESSION['User']."</br>";
 	    echo "<a href='./CreateEvent.php'>Create Event</a></br>";
-	    echo "<a href='./Createvents?Search=biologOrganization.php'>Create Organization</a></br>";
+	    echo "<a href='./CreateOrganization.php'>Create Organization</a></br>";
 	    echo "<a href='./addMembers.php'>Add Members to Org</a></br>";
 	    $sql2="SELECT supervisor FROM Users WHERE uid = '$_SESSION[uid]'";
 	  	if (!mysqli_query($con,$sql2)) {
