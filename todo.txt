@@ -3,6 +3,8 @@ Database stuff:
 -- let location and description be longer
 -- change event primary key from an autoincremented number to name, date, and time. Especially if we start automatically adding events, don't want to allow duplicates.
 
+-- for events, featured = 0/1?
+
 
 php/html:
 
@@ -15,6 +17,7 @@ php/html:
 
 -- let event creators edit certain parts of an event? (time, additional info)
 -- more admin options? (disapprove event)
+-- featured events? (random or selected by an admin)
 
 
 crontab:
