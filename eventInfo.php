@@ -121,7 +121,7 @@
 				}
 				while ($row = mysqli_fetch_array($result)) {
 					//print result
-					echo "Name: ".$row['name']." </br> Location: ".$row['location']." </br> Date: ".$row['date']." </br> Time: ".$row['time']." </br> Genre: ".$row['genre']." </br> Description: ".$row['description'];
+					echo "<b>Name:</b> ".$row['name']." </br> <b>Location:</b>  ".$row['location']." </br> <b>Date:</b>  ".$row['date']." </br> <b>Time:</b>  ".$row['time']." </br> <b>Genre: </b> ".$row['genre']." </br><b> Description: </b> ".$row['description'];
 				}
 			?>
 		</div>	
