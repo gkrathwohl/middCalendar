@@ -16,11 +16,17 @@
 <div class = "Notmidd">asdf</div>
 
 
+<div id = "Notmidd" class="genre">Administrations's Calendar<input type="checkbox" id="checkbox1" /></div>  
+<div id = "Notmidd1" class="genre">Administrations's Calendar<input type="checkbox" id="checkbox2" /></div>
+
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
 </script>
 <script>
 $(document).ready(function(){
-  $(".midd").hide();
+  $(".genre").each(function(){
+    alert($(this).attr('id'));
+  });
 });
 </script>
 </head>

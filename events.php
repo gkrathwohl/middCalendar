@@ -1,3 +1,42 @@
+<?php session_start(); ?>
+<!DOCTYPE HTML>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+
+$(document).ready(function() {
+
+
+$(document).ready(function(){
+  
+$(".genres").each(function(){
+//alert("hi");
+    this.change(function() {
+	alert("hi");
+    //  if (!$(this).is(':checked')) {
+     //     $((this).attr('id')).hide();
+     //   }else{
+//	  $((this).attr('id')).show();
+    //  }
+   
+    });
+
+
+
+  });
+});
+
+
+
+    
+
+});
+
+</script>
+<title> Midd Events </title>
+<html>
+
+
+
 <?php 
 	//start session
 	//must happen before anything else on the page
@@ -88,36 +127,11 @@
 	    echo "<a href='./login.php'>Log In</a></br>";
 	    echo "<a href='./CreateUser.php'>Create User</a></br>";
 	}
+
+	
 ?>
 
 
-
-
-<!DOCTYPE HTML>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<title> Midd Events </title>
-<html>
-
-
-<script>
-
-$(document).ready(function() {
-
-    $('#checkbox1').change(function() {
-      if ($(this).is(':checked')) {
-          $('.OldCalendar').hide();
-
-        }else{
-	  $('.OldCalendar').show();
-}
-   
-    });
-
-});
-
-</script>
-
-Show events from official midd calendar<input type="checkbox" id="checkbox1" />
       
 	<form method="POST" action="insert1.php">
 	Search: <input type="text" name="Search" /> <br> <br>
@@ -138,15 +152,25 @@ Show events from official midd calendar<input type="checkbox" id="checkbox1" />
 	<p>
 	</p>
 	</form>
+</div>
+
+<div id='content'>
+<div id='genres'>
+Administrations's Calendar<input type="checkbox" id="OldCalendar" class="genres" checked/>
+Dance<input type="checkbox" id="dance" class="genres" checked/>
+Clam Bake<input type="checkbox" id="clams" checked/>
+Dance<input type="checkbox" id="dance" class="genres" checked/>
+Dance<input type="checkbox" id="checkbox1" class="genres" checked/>
+Dance<input type="checkbox" id="checkbox1" class="genres" checked/>
+Dance<input type="checkbox" id="checkbox1" class="genres" checked/>
+</div>
 
 	<?php
-		echo "</div>";
 
 		$days = array('Sunday', 'Monday', 'Tuesday', 'Wednesday','Thursday','Friday', 'Saturday');
 		$months = array('01'=>'January', '02'=>'February', '03'=>'March', '04'=>'April','05'=>'May','06'=>'June', '07'=>'July', '08'=>'August', '09'=>'September', '10'=>'October', '11'=>'November', '12'=>'December');
 
 		echo "</br>";
-		echo "<div id='content'>";
 		echo "<div id='table1'>";
 		echo "<table>";
 		echo "<tr>";
@@ -183,12 +207,17 @@ Show events from official midd calendar<input type="checkbox" id="checkbox1" />
 		//close connection
 		mysql_close($con);
 	?>
+
+</div>
 </body>
 
 </html>
 
 
 <style>
+	#genres{
+		float:top;
+	}
 	a:visited, a:link {
 		color:#0066CC;
 	}
@@ -222,6 +251,7 @@ Show events from official midd calendar<input type="checkbox" id="checkbox1" />
 		vertical-align:top;
 		width:200;
 	}
+	
 </style>
 
 
