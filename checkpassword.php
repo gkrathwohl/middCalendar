@@ -66,8 +66,8 @@ else {
         else {
                 //print_r($_POST);
                 // The sesion user needs to be the name of the user!!!
-                echo "Welcome " .$_POST[email]."</br>";
-                $_SESSION['User'] = $_POST[email];        
+                echo "Welcome " .$user['name']."</br>";
+                $_SESSION['User'] = $user['name'];        
                 // I also think the session uid is automatically assigned and we don't need to worry about it.
                 $_SESSION['uid'] = $user['uid'];
                 //print_r($_SESSION);                
