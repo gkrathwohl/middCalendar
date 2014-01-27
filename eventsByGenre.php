@@ -1,6 +1,8 @@
+ 
 <?php session_start(); ?>  
 
 <?php 
+
 //start session
 //must happen before anything else on the page
 
@@ -36,7 +38,7 @@ date_add($date,date_interval_create_from_date_string("6 days"));
 //echo "Seven days from now is: ".date_format($date,"Y-m-d")."</br>";
 
 //sql query selects all events between today's date and 6 days from now
-$sql="SELECT * FROM Events WHERE date BETWEEN '".date_format($date1,"Y-m-d")."' AND '".date_format($date,"Y-m-d")."' AND approved=1";
+$sql="SELECT * FROM Events WHERE date BETWEEN '".date_format($date1,"Y-m-d")."' AND '".date_format($date,"Y-m-d")."' AND approved=1 AND genre = '".$_POST['genre']."'";
 
 
 if (!mysqli_query($con,$sql))

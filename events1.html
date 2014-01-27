@@ -1,0 +1,41 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+
+<script src="http://yui.yahooapis.com/3.0.0/build/yui/yui-min.js"></script>
+<ul></ul>
+<script>
+
+
+
+
+var Y = new YUI();
+function handleResponse ( json ) {
+    var items = json.query.results.item;
+    console.log(items);
+var a = items[0].description.split("<br/>");
+var lo = a[0];
+var time = a[1];
+
+ Y.one( 'ul' ).append( '<li>'+lo+" time: "+time+'</li>' );
+
+
+    //for ( var i = 0; i < items.length; i++ ) {
+      //  Y.one( 'ul' ).append( '<li>'+items[i].description+'</li>' );
+    //}
+};
+ 
+// ref: http://developer.yahoo.com/yui/3/node/
+Y.use('node', function ( Y ) {
+    
+    //when the DOM node utility is ready, fetch the data
+    Y.Get.script( "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22http%3A%2F%2F25livepub.collegenet.com%2Fcalendars%2Fall-campus-events.rss%22&format=json&diagnostics=true&callback=handleResponse	" );
+} );
+ 
+// run the query in the YQL console: http://developer.yahoo.com/yql/console/?q=select%20*%20from%20rss%20where%20url%3D%27http%3A%2F%2Fwww.un.org%2Fapps%2Fnews%2Frss%2Frss_top.asp%27
+</script>
+
+</script>
+<html>
+<body>
+hi
+</body>
+</html>
