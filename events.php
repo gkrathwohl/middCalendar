@@ -69,7 +69,7 @@ $(".genres").each(function(){
 	//echo "Seven days from now is: ".date_format($date,"Y-m-d")."</br>";
 
 	//sql query selects all events between today's date and 6 days from now
-	$sql="SELECT * FROM Events WHERE date BETWEEN '".date_format($date1,"Y-m-d")."' AND '".date_format($date,"Y-m-d")."' AND approved=1";
+	$sql="SELECT * FROM Events WHERE date BETWEEN '".date_format($date1,"Y-m-d")."' AND '".date_format($date,"Y-m-d")."' AND approved=1 Order by date, time";
 
 
 	if (!mysqli_query($con,$sql))
