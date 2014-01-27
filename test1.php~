@@ -74,7 +74,7 @@ $time = htmlspecialchars("4:34");
 
 	   // $building = htmlspecialchars("220 college street");
 	   // $room = htmlspecialchars("202");
-	    $uid = htmlspecialchars(502760);
+	    $uid = htmlspecialchars(2);
 	    $genre = htmlspecialchars("dance");
 	    
 	    $orgName = htmlspecialchars("Casual Tuesdays");
