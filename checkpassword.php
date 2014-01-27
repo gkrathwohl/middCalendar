@@ -1,81 +1,54 @@
-<?php session_start(); ?>
-
-<!DOCTYPE HTML>
 <?php 
-session_start();
-// Print_r ($_SESSION);
+	session_start();
 
+	function encrypt_decrypt($action, $string) {
+		$output = false;
+		$encrypt_method = "AES-256-CBC";
+		$secret_key = 'This is my secret key';
+		$secret_iv = 'This is my secret iv';
+		// hash
+		$key = hash('sha256', $secret_key);
+		// iv - encrypt method AES-256-CBC expects 16 bytes - else you will get a warning
+		$iv = substr(hash('sha256', $secret_iv), 0, 16);
+		if( $action == 'encrypt' ) {
+			$output = openssl_encrypt($string, $encrypt_method, $key, 0, $iv);
+			$output = base64_encode($output);
+		}
+		else if( $action == 'decrypt' ){
+			$output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
+		}
+		return $output;
+	}	
 
-//set up the connection to the database
-define('DB_SERVER', 'panther.cs.middlebury.edu');
-define('DB_USERNAME', 'wschaaf');
-define('DB_PASSWORD', 'wschaaf');
-define('DB_DATABASE', 'wschaaf_Calendar');
-
-/*
-$mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-
-        $stmt = $mysqli->prepare("SELECT * FROM Users WHERE email=? AND password=?");
-
-        if (!$stmt){
-                echo "Prepare failed: (".$mysqli->errno . ") ".$mysqli->error;
-        }
-
-
-        $email = $_POST[email];
-        $password = $_POST[pw];
-
-
-
-        if (!$stmt->bind_param("ss",$email,$password)){
-                echo "Binding parameters failed: (" . $stmt->errno . ")".$stmt->error;
-        }
-        if (!$stmt->execute()){
-                echo "Execute failed: (" . $stmt->errno . ")".$stmt->error;
-        }else{
-                  $result = mysqli_query($con, $stmt);
-                  print_r($stmt);
-                  $user = mysqli_fetch_array($result);
-                  //print_r($user);
-                  if($user == null) {
-                          echo "Sorry your username or password was incorrect.</br>";
-                  }
-                  else {
-                          //print_r($_POST);
-                          echo "Welcome " .$_POST[email]."</br>";
-                          $_SESSION['User'] = $_POST[email];        
-                          $_SESSION['uid'] = $user['uid'];
-                          //print_r($_SESSION);                
-                  }
-        }
-*/
-$email = htmlspecialchars($_POST[email]);
-$pw = htmlspecialchars($_POST[pw]);
-$con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die ("could not connect");
-$sql = "SELECT * FROM Users WHERE email='$email' AND password='$pw'";
-if (!mysqli_query($con, $sql)) {
-    die('Error: ' . mysqli_error($con));
-}
-else {
-        $result = mysqli_query($con, $sql);
-        $user = mysqli_fetch_array($result);
-        //print_r($user);
-        if($user == null) {
-                echo "Sorry your username or password was incorrect.</br>";
-        }
-        else {
-                //print_r($_POST);
-                // The sesion user needs to be the name of the user!!!
-                echo "Welcome " .$user['name']."</br>";
-                $_SESSION['User'] = $user['name'];        
-                // I also think the session uid is automatically assigned and we don't need to worry about it.
-                $_SESSION['uid'] = $user['uid'];
-                //print_r($_SESSION);                
-        }
-        
-}
+	//set up the connection to the database
+	define('DB_SERVER', 'panther.cs.middlebury.edu');
+	define('DB_USERNAME', 'wschaaf');
+	define('DB_PASSWORD', 'wschaaf');
+	define('DB_DATABASE', 'wschaaf_Calendar');
+	$email = htmlspecialchars($_POST[email]);
+	$pw = encrypt_decrypt('encrypt', htmlspecialchars($_POST[pw]));
+	$con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die ("could not connect");
+	$sql = "SELECT * FROM Users WHERE email='$email' AND password='$pw'";
+	if (!mysqli_query($con, $sql)) {
+	    die('Error: ' . mysqli_error($con));
+	}
+	else {
+		$result = mysqli_query($con, $sql);
+		$user = mysqli_fetch_array($result);
+		if($user == null) {
+		        echo "Sorry your username or password was incorrect.</br>";
+		}
+		else {
+		       	
+		        $_SESSION['User'] = $user['name'];        
+		        $_SESSION['uid'] = $user['uid'];
+		        Header("Location: ./events.php");                
+		}
+		
+	}
 ?>
 
+<!DOCTYPE HTML>
 <html>
 <head>
 </head>
