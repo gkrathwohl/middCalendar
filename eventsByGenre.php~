@@ -1,43 +1,3 @@
-<?php session_start(); ?>
-<!DOCTYPE HTML>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>
-
-$(document).ready(function() {
-
-
-$(document).ready(function(){
-  
-$(".genres").each(function(){
-//alert("hi");
-    $(this).change(function() {
-      a = $(this).attr('id');
-      //alert(a);
-  
-      if (!$(this).is(':checked')) {
-         // $('.OldCalendar').hide();
-	  $("."+a).hide();
-        }else{
-	  $("."+a).show();
-	  //alert(".'"+a+"'");
-      }
-   
-    });
-  });
-});
-
-
-
-    
-
-});
-
-</script>
-<title> Midd Events </title>
-<html>
-<body background=1003background.png>
-
-
 <?php 
 	//start session
 	//must happen before anything else on the page
@@ -69,7 +29,7 @@ $(".genres").each(function(){
 	//echo "Seven days from now is: ".date_format($date,"Y-m-d")."</br>";
 
 	//sql query selects all events between today's date and 6 days from now
-	$sql="SELECT * FROM Events WHERE date BETWEEN '".date_format($date1,"Y-m-d")."' AND '".date_format($date,"Y-m-d")."' AND approved=1 Order BY date, time";
+	$sql="SELECT * FROM Events WHERE date BETWEEN '".date_format($date1,"Y-m-d")."' AND '".date_format($date,"Y-m-d")."' AND approved=1 AND genre = '".$_POST['genre']."'";
 
 
 	if (!mysqli_query($con,$sql))
@@ -106,7 +66,7 @@ $(".genres").each(function(){
 	if(isset($_SESSION['User'])){
 	    echo "Welcome ".$_SESSION['User']."</br>";
 	    echo "<a href='./CreateEvent.php'>Create Event</a></br>";
-	    echo "<a href='./CreateOrganization.php'>Create Organization</a></br>";
+	    echo "<a href='./Createvents?Search=biologOrganization.php'>Create Organization</a></br>";
 	    echo "<a href='./addMembers.php'>Add Members to Org</a></br>";
 	    $sql2="SELECT supervisor FROM Users WHERE uid = '$_SESSION[uid]'";
 	  	if (!mysqli_query($con,$sql2)) {
@@ -128,9 +88,14 @@ $(".genres").each(function(){
 	    echo "<a href='./login.php'>Log In</a></br>";
 	    echo "<a href='./CreateUser.php'>Create User</a></br>";
 	}
-
-	
 ?>
+
+
+
+
+<!DOCTYPE HTML>
+<title> Midd Events </title>
+<html>
 
 
       
@@ -153,25 +118,15 @@ $(".genres").each(function(){
 	<p>
 	</p>
 	</form>
-</div>
-
-<div id='content'>
-<div id='genres'>
-Administrations's Calendar<input type="checkbox" id="OldCalendar" class="genres" checked/>
-Dance<input type="checkbox" id="Dance" class="genres" checked/>
-Clam Bake<input type="checkbox" id="Clam Bake" class="genres" checked/>
-Dance<input type="checkbox" id="dance" class="genres" checked/>
-Dance<input type="checkbox" id="check" class="genres" checked/>
-Dance<input type="checkbox" id="checkbox1" class="genres" checked/>
-Dance<input type="checkbox" id="checkbox1" class="genres" checked/>
-</div>
 
 	<?php
+		echo "</div>";
 
 		$days = array('Sunday', 'Monday', 'Tuesday', 'Wednesday','Thursday','Friday', 'Saturday');
 		$months = array('01'=>'January', '02'=>'February', '03'=>'March', '04'=>'April','05'=>'May','06'=>'June', '07'=>'July', '08'=>'August', '09'=>'September', '10'=>'October', '11'=>'November', '12'=>'December');
 
 		echo "</br>";
+		echo "<div id='content'>";
 		echo "<div id='table1'>";
 		echo "<table>";
 		echo "<tr>";
@@ -186,15 +141,7 @@ Dance<input type="checkbox" id="checkbox1" class="genres" checked/>
 			array_shift($value);
 			//print out each event that occurs on day, as a link to more details
 			foreach($value as $event){
-				echo "<div class='".$event['genre']."'>";
-				
-				echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a> </br>".date('g:i A',strtotime($event['time']))."<br>";
-				//echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a> ".date("l jS \of F Y h:i:s A",strtotime($event['time']))."<br>";
-
-				 echo "<div class = 'description'>".substr($event['description'],0,15)."...</div></br>";
-
-
-				echo "</div>";
+				echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a> ".date('g:i',strtotime($event['time']))."<br>";
 			}
 			echo "</td>";
 		}
@@ -214,17 +161,12 @@ Dance<input type="checkbox" id="checkbox1" class="genres" checked/>
 		//close connection
 		mysql_close($con);
 	?>
-
-</div>
 </body>
 
 </html>
 
 
 <style>
-	#genres{
-		float:top;
-	}
 	a:visited, a:link {
 		color:#0066CC;
 	}
@@ -233,33 +175,13 @@ Dance<input type="checkbox" id="checkbox1" class="genres" checked/>
 		font-size:20;
 	}
 	#links {
-		border-radius: 25px;
-		color: pink;
-		position:fixed;				
-		background-color:black;
-		opacity: .90;
-		width:10%;
-		padding-top: 20px;
-		padding-bottom: 20px;
-		padding-right: 10%;
-		padding-left: 10%;
-		border-width: 3px;
-		border-color: black;
-		margin-top: 10%;
-		margin-right: 20%;
-		margin-left: 65%;
-		z-index: 1;
-		//background-color: white;
-		//opacity: .9;
-		//float:left;
-		//width: 200px ;
+		float:left;
+		width: 200px ;
 	}
 	#content {
 		float:left;
 	}
 	#table1 {
-		opacity: .9;
-		background-color: white;
 		width: 1100px ;
 		margin-left: auto ;
 		margin-right: auto ;
@@ -267,7 +189,7 @@ Dance<input type="checkbox" id="checkbox1" class="genres" checked/>
 	div.date a:link,div.date a:visited {
 		text-transform:uppercase;
 		font-weight:bold;
-		color: #0066CC;
+		color:#0066CC;
 	}
 
 	table, th, td {
@@ -278,10 +200,6 @@ Dance<input type="checkbox" id="checkbox1" class="genres" checked/>
 		vertical-align:top;
 		width:200;
 	}
-	
 </style>
-
-
-
 
 

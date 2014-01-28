@@ -1,7 +1,5 @@
 <?php session_start(); ?>
-<!DOCTYPE HTML>
-
-
+<!DOCTYPE html>
 <html>
 	<head>
 		<style>
@@ -90,6 +88,7 @@
 				text-decoration:none;
 			}
 		</style>
+		</style>
 	</head>
 	
 	<body background=1003background1.png>
@@ -106,20 +105,29 @@
 				if(isset($_SESSION['User'])){
 					echo "<div class=headerText>Welcome ".$_SESSION['User']."</div>";
 					echo "<div class=headerText><a href='./events.php'>Home</a></div>";
-					echo "<div class=headerText><a href='./logout.php'>Logout</a></div>";					
-					echo "<form method='POST' action='insert1.php'> <input type='text' name='Search' >
-	<input type='submit' value='Search'> 
-	</form>";	
-					
+					echo "<div class=headerText><a href='./CreateEvent.php'>Create Event</a></div>";
+					echo "<div class=headerText><a href='./CreateOrganization.php'>Create Organization</a></div>";
+					echo "<div class=headerText><a href='./addMembers.php'>Add Members to Org</a></div>";
+					$sql2="SELECT supervisor FROM Users WHERE uid = '$_SESSION[uid]'";
+				  	if (!mysqli_query($con,$sql2)) {
+						die('Error: ' . mysqli_error());
+				  	}
+				  	else {
+				 		//execute the SQL query
+						$result2 = mysqli_query($con,$sql2);	    
+				  	}    
+					$row = mysqli_fetch_array($result2);
+					if($row['supervisor']==1) {
+						echo "<div class=headerText><a href='./approveEvents.php'>Approve Events</a></div>";
+					}
+					echo "<div class=headerText><a href='./logout.php'>Logout</a></div>";
 				}
 				else { 
 					//if session user is not set, show link to log in and to create user
 					$_SESSION['User'] = null;
-					echo "<div class=headerText><a href='./events.php'>Home</a></div>";					
+					echo "<div class=headerText><a href='./events.php'>Home</a></div>";
 					echo "<div class=headerText><a href='./login.php'>Log In</a></div>";
-					echo "<form method='POST' action='insert1.php'> <input type='text' name='Search' >
-	<input type='submit' value='Search'> 
-	</form>";	
+					echo "<div class=headerText><a href='./CreateUser.php'>Create User</a></div>";
 				}
 			?>
 		</div>
@@ -127,29 +135,40 @@
 
 
 		<div class="main"> 
-			<?php 
-	//set up the connection to the database
-	define('DB_SERVER', 'panther.cs.middlebury.edu');
-	define('DB_USERNAME', 'wschaaf');
-	define('DB_PASSWORD', 'wschaaf');
-	define('DB_DATABASE', 'wschaaf_Calendar');
-	$search = htmlspecialchars($_POST[Search]);
-	$con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die ("could not connect");
-	$sql="SELECT * FROM Events WHERE name LIKE '%$search%'";
-	if (!mysqli_query($con, $sql)) {
-		die('Error: ' . mysqli_error($con));
-	}
-	else {
-		//execute the SQL query
-		$result = mysqli_query($con,$sql);
-	}
-	while ($row = mysqli_fetch_array($result)) {
-		//print result
-		echo "<p>".$row['name']."</p>  </br>Location: ".$row['location']."  </br>Date: ".$row['date']."  </br> Time: ".$row['time']." </br> Genre: ".$row['genre']." </br> Description: ".$row['description']."</br> </br>";	 
-	}
+			<?php
+				if(isset($_GET["date"]))
+   				{
+       				$date = $_GET["date"];
+    				}
+				//set up the connection to the database
+				define('DB_SERVER','panther.cs.middlebury.edu');
+				define('DB_USERNAME','wschaaf');
+				define('DB_PASSWORD','wschaaf');
+				define('DB_DATABASE','wschaaf_Calendar');
+				$con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die("Could not connect");
+				$sql="SELECT * FROM Events WHERE date = '".$date."' AND approved = 1";
 
-?>
+				if (!mysqli_query($con,$sql))
+				{
+					die('Error: ' . mysqli_error());
+				}
+				else
+				{
+ 				//execute the SQL query
+ 					$result = mysqli_query($con,$sql);
+				}
+
+
+				while ($row = mysqli_fetch_array($result)) {
+ 					//print result
+ 					echo "<p>".$row['name']."</p>  </br>Location: ".$row['location']."  </br>Date: ".$row['date']."  </br> Time: ".$row['time']." </br> Genre: ".$row['genre']." </br> Description: ".$row['description']."</br> </br>";
+				}
+			?>
 		</div>	
 
 
 
+
+
+	</body>
+</html>

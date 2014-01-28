@@ -115,11 +115,9 @@
 				else { 
 					//if session user is not set, show link to log in and to create user
 					$_SESSION['User'] = null;
-					echo "<div class=headerText><a href='./events.php'>Home</a></div>";					
+					echo "<div class=headerText><a href='./events.php'>Home</a></div>";
 					echo "<div class=headerText><a href='./login.php'>Log In</a></div>";
-					echo "<form method='POST' action='insert1.php'> <input type='text' name='Search' >
-	<input type='submit' value='Search'> 
-	</form>";	
+					echo "<div class=headerText><a href='./CreateUser.php'>Create User</a></div>";
 				}
 			?>
 		</div>

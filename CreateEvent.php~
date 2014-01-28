@@ -1,4 +1,3 @@
-<?php session_start();?>
 <html>
 <head>
 	<title>Create Event</title>
@@ -20,7 +19,7 @@
 			<option value="Pineapple"> Pineapple </option>
 			<option value="Sports"> Sports </option>
 		</select> <br>
-		Organization: <select name='orgName' form='newEvent'>
+		<!--Organization: <select name='orgName' form='newEvent'>-->
 			<?php
 				define('DB_SERVER','panther.cs.middlebury.edu');
 				define('DB_USERNAME','wschaaf');
@@ -34,12 +33,12 @@
 				else {
 					$result = mysqli_query($con,$sql);
 				}
-				echo "";
+				echo $_SESSION['uid'];
 				while ($row = mysqli_fetch_array($result)) {
 					echo "<option value='".$row[orgName]."'>".$row[orgName]."</option>";
 				}
 			?>
-		</select><br>
+		<!--</select><br>-->
 	    <textarea name="description" rows="5" cols="40" placeholder="Enter description here" required></textarea> <br>
 	    <input type="submit" value="Create Event!"/> <br> <br>
 	</form>
