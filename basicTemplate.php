@@ -4,13 +4,17 @@
 <html>
 	<head>
 		<style>
+		
+			
 			.logo {
 				position: fixed;
 				margin-top: 20px;
 				margin-left: 38%;
 				z-index: 2;
+				opacity: .6;
 			}
-			.header {
+			.header {				
+
 				position:fixed;				
 				background-color:gray;
 				opacity: .9;
@@ -61,7 +65,7 @@
 	
 	<body background=1003background1.png>
 		<div class="logo">
-			<img src=MiddleburyPanther.jpg width="400px" height="178px">		
+			<img src=MiddleburyPanther.jpg opacity=.6 width="400px" height="178px">		
 		</div>		
 		<div class="header">
 			<?php
