@@ -1,0 +1,18 @@
+
+Array
+(
+    [0] => Johnson Memorial Building, Pit Space 
+    [1] => Thursday, January 30, 2014, 4:30&nbsp;&ndash;&nbsp;6pm 
+    [2] => 
+    [3] => Studio Art major Ally Silberkleit &#39;14 presents work in a Senior Independent Studio Art Exhibition.  On view January 28 - January 31, with an opening reception from 4:30 - 6:00 p.m. on Thursday, January 30. 
+    [4] => 
+    [5] => <b>Event Title</b>:&nbsp;Senior Independent Art Opening: Ally SilberKleit &#39;14 
+    [6] => <b>Admission</b>:&nbsp;Free 
+    [7] => <b>Categories</b>:&nbsp;Open to the Public, Campus Calendar, Featured Events Calendar, Arts Calendar 
+    [8] => <b>Submitter Name</b>:&nbsp;Carroll, Monica 
+    [9] => <b>Submitter Phone</b>:&nbsp;443-5234 
+    [10] => <b>Submitter Email</b>:&nbsp;<a href="mailto:mmccabe@middlebury.edu" target="_blank">mmccabe@middlebury.edu</a> 
+    [11] => 
+    [12] => 
+)
+Execute failed: (1062)Duplicate entry 'Global Health Talk: Raghu Appasani, MIND-04:34:00-2014-01-28' for key 2Execute failed: (1062)Duplicate entry '04:34:00-2014-01-29' for key 2Execute failed: (1062)Duplicate entry 'Crowd Manager Training-04:34:00-2014-01-30' for key 2Execute failed: (1062)Duplicate entry 'Senior Independent Art Opening: Ally Sil-04:34:00-2014-01-30' for key 2Execute failed: (1062)Duplicate entry 'Geography Lunch-04:34:00-2014-01-31' for key 2
