@@ -6,7 +6,7 @@
 		<style>
 			.logo {
 				position: fixed;
-				margin-top: 20px;
+				margin-top: 1%;
 				margin-left: 38%;
 				z-index: 2;
 			}
@@ -29,7 +29,7 @@
 			.headerText {
 				float: left;
 				color: white;
-				width: 13%
+				width: 13%  
 			}
 			.center {
 				color:black;
@@ -44,8 +44,9 @@
 				padding-bottom: 5%;
 				padding-right: 10%;
 				padding-left: 10%;
-				border-width: 2px;
+				border-width: 3px;
 				border-color: black;
+				border-radius: 25px;
 				margin-top: 15%;
 				margin-bottom: 5%;
 				margin-right: 10%;
@@ -56,12 +57,37 @@
 				font-family:"Times New Roman";
 				font-size:20px;
 			}
+			a:link {
+				font-size: 1em;
+				font-weight: normal;
+				color: white;  
+				text-decoration:none;
+				
+			}
+			a:visited {
+				font-size: 1em;
+				font-weight: normal;
+				color: white;  
+				text-decoration:none;
+			}
+			a:hover {
+				font-size: 1.2em;
+				font-weight: bold;
+				color: white;  
+				text-decoration:none;
+			}
+			a:active {
+				font-size: 1.2em;
+				font-weight: bold;
+				color: white;  
+				text-decoration:none;
+			}
 		</style>
 	</head>
 	
 	<body background=1003background1.png>
 		<div class="logo">
-			<img src=MiddleburyPanther.jpg width="400px" height="178px">		
+			<img src=MiddleburyPanther.jpg width="100%" height="100%">		
 		</div>		
 		<div class="header">
 			<?php
