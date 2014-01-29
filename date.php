@@ -44,7 +44,7 @@
 			.main {
 				position: fixed;
 				background-color: white;
-				opacity: .8;
+				opacity: .9;
 				width: 60%;
 				height: 50%;
 				overflow-y: scroll;
