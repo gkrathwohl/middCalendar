@@ -235,6 +235,7 @@ mysql_close($con)
 html{
 background: #737373;
 background-image:url('./1003background1.png');
+background-attachment: fixed;
 }
 
 a:visited, a:link{
@@ -242,31 +243,54 @@ color:#0066CC;
 }
 
 #links{
-float:left;
-width: 200px ;
-background: white;
-opacity:0.9;
+border-radius: 25px;
+color: pink;
+position:fixed;				
+background-color:black;
+opacity: .90;
+width:10%;
+padding-top: 20px;
+padding-bottom: 20px;
+padding-right: 10%;
+padding-left: 10%;
+border-width: 3px;
+border-color: black;
+margin-top: 10%;
+margin-right: 20%;	
+margin-left: 65%;
+z-index: 1;
+//float:left;
+//width: 200px ;
+//background: white;
+//opacity:0.9;
 }
 #content{
 float:left;
 }
 #table1{
-background: white;
-opacity:0.9;
+border-radius: 25px;
+opacity: .9;
+color: pink;
+background-color: black;
   width: 1100px ;
   margin-left: auto ;
   margin-right: auto ;
+text-align:center;
+font-size: 28;
 }
 div.date a:link,div.date a:visited{
 text-transform:uppercase;
 font-weight:bold;
-color:#0066CC;
+color:white;
+font-size:35;
 }
 .description{
 color: #585858;
-font-size:16;
+font-size:24;
 }
-
+tr{
+text-align:center;
+}
 table, th, td
 {
 font-size:20;
