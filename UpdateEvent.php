@@ -45,7 +45,7 @@
                                 background-color: white;
                                 opacity: .9;
                                 width: 60%;
-                                height: 50%;
+                                height: 40%;
                                 overflow-y: scroll;
                                 padding-top: 5%;
                                 padding-bottom: 5%;
