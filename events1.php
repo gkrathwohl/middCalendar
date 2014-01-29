@@ -36,7 +36,7 @@ date_add($date,date_interval_create_from_date_string("6 days"));
 //echo "Seven days from now is: ".date_format($date,"Y-m-d")."</br>";
 
 //sql query selects all events between today's date and 6 days from now
-$sql="SELECT * FROM Events WHERE date BETWEEN '".date_format($date1,"Y-m-d")."' AND '".date_format($date,"Y-m-d")."' AND approved=1";
+$sql="SELECT * FROM Events WHERE date BETWEEN '".date_format($date1,"Y-m-d")."' AND '".date_format($date,"Y-m-d")."' AND approved=1 ORDER BY date, time";
 
 
 if (!mysqli_query($con,$sql))
@@ -192,7 +192,7 @@ echo "</br>";
 //echo "<td>";
   echo "<div class = 'date'>";
   echo "<a href='./date.php?date=".$key."' >";
-  echo $days[date( "w", strtotime($key))].", ";
+  echo $days[date( "w", strtotime($key))]."</br>";
   echo $months[date( "m", strtotime($key))]." ".date( "d", strtotime($key))."</br></br>";
   echo "</a></div>";
   //array shift removes first value of array, which kept being current time for some reason.
@@ -203,7 +203,7 @@ echo "</br>";
         echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a> ".date('g:i A',strtotime($event['time']));
 	//echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a> ".date("l jS \of F Y h:i:s A",strtotime($event['time']))."<br>";
 
-	echo "<div class = 'description'>".substr($event['description'],0,30)."...</div>";
+	echo "<div class = 'description'>".substr($event['description'],0,15)."...</div>";
   }
 //echo "</td>";
   }
@@ -235,7 +235,6 @@ mysql_close($con)
 html{
 background: #737373;
 background-image:url('./1003background1.png');
-background-attachment: fixed;
 }
 
 a:visited, a:link{
@@ -243,54 +242,31 @@ color:#0066CC;
 }
 
 #links{
-border-radius: 25px;
-color: pink;
-position:fixed;				
-background-color:black;
-opacity: .90;
-width:10%;
-padding-top: 20px;
-padding-bottom: 20px;
-padding-right: 10%;
-padding-left: 10%;
-border-width: 3px;
-border-color: black;
-margin-top: 10%;
-margin-right: 20%;	
-margin-left: 65%;
-z-index: 1;
-//float:left;
-//width: 200px ;
-//background: white;
-//opacity:0.9;
+float:left;
+width: 200px ;
+background: white;
+opacity:0.9;
 }
 #content{
 float:left;
 }
 #table1{
-border-radius: 25px;
-opacity: .9;
-color: pink;
-background-color: black;
+background: white;
+opacity:0.9;
   width: 1100px ;
   margin-left: auto ;
   margin-right: auto ;
-text-align:center;
-font-size: 28;
 }
 div.date a:link,div.date a:visited{
 text-transform:uppercase;
 font-weight:bold;
-color:white;
-font-size:35;
+color:#0066CC;
 }
 .description{
 color: #585858;
-font-size:24;
+font-size:16;
 }
-tr{
-text-align:center;
-}
+
 table, th, td
 {
 font-size:20;
