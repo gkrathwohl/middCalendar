@@ -35,7 +35,7 @@ $(".genres").each(function(){
 </script>
 <title> Midd Events </title>
 <html>
-<body background=1003background.png>
+<body background=1003background1.png>
 
 
 <?php 
@@ -258,11 +258,14 @@ Dance<input type="checkbox" id="checkbox1" class="genres" checked/>
 		float:left;
 	}
 	#table1 {
+		border-radius: 25px;
 		opacity: .9;
-		background-color: white;
+		color: pink;
+		background-color: black;
 		width: 1100px ;
 		margin-left: auto ;
 		margin-right: auto ;
+	
 	}
 	div.date a:link,div.date a:visited {
 		text-transform:uppercase;
@@ -271,12 +274,13 @@ Dance<input type="checkbox" id="checkbox1" class="genres" checked/>
 	}
 
 	table, th, td {
-		border: 1px solid black;
+		border-radius: 25px;
+		border: 1px solid white;
 		text-align:center;
 	}
 	td {
 		vertical-align:top;
-		width:200;
+		width:50;
 	}
 	
 </style>
