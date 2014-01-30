@@ -1,5 +1,5 @@
 <?php
-        session_start();
+	session_start();
     //set up the connection to the database
     define('DB_SERVER', 'panther.cs.middlebury.edu');
     define('DB_USERNAME', 'wschaaf');
@@ -28,28 +28,169 @@
     $con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die ("could not connect");
     $email = htmlspecialchars($_POST[email]);
     $pw = htmlspecialchars($_POST[pw]);
-        $encryptpw = encrypt_decrypt('encrypt', $pw);
+	$encryptpw = encrypt_decrypt('encrypt', $pw);
     $name = htmlspecialchars($_POST[name]);
     $uid = htmlspecialchars($_POST[uid]);
-    $sql="INSERT INTO Users (email, password, name, uid) VALUES ('$email','$encryptpw','$name', '$uid')";
-    if (!mysqli_query($con, $sql)){
-         die('Error: ' . mysqli_error($con));
-    }
-    else {
-        $_SESSION['User'] = $name;
+    $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+	$stmt = $mysqli->prepare("INSERT INTO Users (email, password, name, uid) VALUES (?, ?, ?, ?)");
+	if (!$stmt){
+		echo "Prepare failed: (".$mysqli->errno . ") ".$mysqli->error;
+	}
+	if (!$stmt->bind_param("sssi", $email, $encryptpw, $name, $uid)){
+		echo "Binding parameters failed: (" . $stmt->errno . ")".$stmt->error;
+	}
+	if (!$stmt->execute()){
+		echo "Execute failed: (" . $stmt->errno . ")".$stmt->error;
+	}
+	$_SESSION['User'] = $name;
 	$_SESSION['uid'] = $uid;
 	Header("Location: ./events.php");
-    }
 ?>
 
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
-</head>
+        <head>
+                <style>
+                
+                        
+                        .logo {
+                                position: fixed;
+                                margin-top: 1%;
+                                width: 24%;
+                                height: 15%;
+                                margin-left: 38%;
+                                z-index: 2;
+                                opacity: .6;
+                        }
+                        .header {                                
 
-<body>
-</br>
-<a href='./events'>Back to events</a>
-</body>
+                                                position:absolute;                                
+                                background-color:gray;
+                                opacity: .9;
+                                width:100%;
+                                height: 2%;
+                                padding-top: 1%;
+                                padding-bottom: 1%;
+                                padding-right: 10%;
+                                padding-left: 10%;
+                                //border-width: 3%;
+                                //border-color: black;
+                                margin-top: 10%;
+                                margin-right: 0%;
+                                margin-left: -1%;
+                                z-index: 1;
+                        }
+                        .headerText {
+                                float: left;
+                                color: white;
+                                width: 13%  
+                        }
+                        .center {
+                                color:black;
+                                text-align:center;
+                        }
+                        .main {
+                                position: fixed;
+                                background-color: white;
+                                opacity: .9;
+                                width: 60%;
+                                height: 50%;
+                                overflow-y: scroll;
+                                padding-top: 5%;
+                                padding-bottom: 5%;
+                                padding-right: 10%;
+                                padding-left: 10%;
+                                border-width: 3%;
+                                border-color: black;
+                                border-radius: 25px;
+                                margin-top: 15%;
+                                margin-bottom: 5%;
+                                margin-right: 10%;
+                                margin-left: 10%;
+                                z-index = -1;
+                        }
+                        p {
+                                font-family:"Times New Roman";
+                                font-size:150%;
+                        }
+                        a:link {
+                                font-size: 1em;
+                                font-weight: normal;
+                                color: white;  
+                                text-decoration:none;
+                                
+                        }
+                        a:visited {
+                                font-size: 1em;
+                                font-weight: normal;
+                                color: white;  
+                                text-decoration:none;
+                        }
+                        a:hover {
+                                font-size: 1.2em;
+                                font-weight: bold;
+                                color: white;  
+                                text-decoration:none;
+                        }
+                        a:active {
+                                font-size: 1.2em;
+                                font-weight: bold;
+                                color: white;  
+                                text-decoration:none;
+                        }
+                </style>
+        </head>
+        
+        <body background=1003background1.png>
+                <div class="logo">
+                        <img src=MiddleburyPanther.jpg width="100%" height="100%">                
+                </div>                
+                <div class="header">
+                        <?php
+                                define('DB_SERVER','panther.cs.middlebury.edu');
+                                define('DB_USERNAME','wschaaf');
+                                define('DB_PASSWORD','wschaaf');
+                                define('DB_DATABASE','wschaaf_Calendar');
+                                $con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die("Could not connect");
+                                if(isset($_SESSION['User'])){
+                                        echo "<div class=headerText>Welcome ".$_SESSION['User']."</div>";
+                                        echo "<div class=headerText><a href='./events.php'>Home</a></div>";
+                                        echo "<div class=headerText><a href='./CreateEvent.php'>Create Event</a></div>";
+                                        echo "<div class=headerText><a href='./CreateOrganization.php'>Create Organization</a></div>";
+                                        echo "<div class=headerText><a href='./addMembers.php'>Add Members to Org</a></div>";
+                                        $sql2="SELECT supervisor FROM Users WHERE uid = '$_SESSION[uid]'";
+                                          if (!mysqli_query($con,$sql2)) {
+                                                die('Error: ' . mysqli_error());
+                                          }
+                                          else {
+                                                 //execute the SQL query
+                                                $result2 = mysqli_query($con,$sql2);            
+                                          }    
+                                        $row = mysqli_fetch_array($result2);
+                                        if($row['supervisor']==1) {
+                                                echo "<div class=headerText><a href='./approveEvents.php'>Approve Events</a></div>";
+                                        }
+                                        echo "<div class=headerText><a href='./logout.php'>Logout</a></div>";
+                                }
+                                else { 
+                                        //if session user is not set, show link to log in and to create user
+                                        $_SESSION['User'] = null;
+                                        echo "<div class=headerText><a href='./events.php'>Home</a></div>";
+                                        echo "<div class=headerText><a href='./login.php'>Log In</a></div>";
+                                        echo "<div class=headerText><a href='./CreateUser.php'>Create User</a></div>";
+                                }
+                        ?>
+                </div>
+
+
+
+                <div class="main"> 
+                        <p>Sorry an error occurred.</p>
+                </div>        
+
+
+
+
+
+        </body>
 </html>
-
