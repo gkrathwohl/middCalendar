@@ -157,7 +157,7 @@ Search: <input type="text" name="Search"  /> <br> <br>
 <option value="Party"> Party </option>
 <option value="Clam Bake"> Clam Bake </option>
 <option value="Pineapple"> Pineapple </option>
-<!--<option value="drinking"> drinking </option>-->
+<option value="drinking"> drinking </option>
 <option value="sports"> sports </option>
 <input type="button" value="Go" name="btm_submit" onclick="validate()">
 </select></p>
