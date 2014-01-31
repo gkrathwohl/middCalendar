@@ -60,7 +60,7 @@ while ($row = mysqli_fetch_array($result)) {
 $result1[] = $row;
 }
 
-//usort($result1, "sortFunction");
+usort($result1, "sortFunction");
 
 //while ($row = mysqli_fetch_array($result)) {
  //for each event, display its name as a link to detailed event info, with eid in the url
@@ -123,7 +123,14 @@ else{ //if session user is not set, show link to log in and to create user
 
 
 <SCRIPT LANGUAGE="javascript">
-function toggle() {
+function validate() {
+
+	fm = document.thisForm
+
+	//use validation here to make sure the user entered
+	//the information correctly
+
+	fm.submit()
 
 }
 
@@ -150,7 +157,7 @@ Search: <input type="text" name="Search"  /> <br> <br>
 <option value="Party"> Party </option>
 <option value="Clam Bake"> Clam Bake </option>
 <option value="Pineapple"> Pineapple </option>
-<!--<option value="drinking"> drinking </option>-->
+<option value="drinking"> drinking </option>
 <option value="sports"> sports </option>
 <input type="button" value="Go" name="btm_submit" onclick="validate()">
 </select></p>
@@ -172,7 +179,7 @@ echo "</div>";
 
 
 $days = array('Sunday', 'Monday', 'Tuesday', 'Wednesday','Thursday','Friday', 'Saturday');
-$months = array('01'=>'January', '02'=>'February', '03'=>'March', '04'=>'April','05'=>'May','06'=>'June', '07'=>'July', '08'=>'August', '09'=>'September', '10'=>'October', '11'=>'November', '12'=>'December');
+$months = array('01'=>'January', 'February', 'March', 'April','May','June', 'July', 'August', 'September', 'October', 'November', 'December');
 
 echo "</br>";
 echo "<div id='content'>";
@@ -196,7 +203,7 @@ echo "</br>";
         echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a> ".date('g:i A',strtotime($event['time']));
 	//echo "<a href='./eventInfo.php?eid=".$event['eid']."'>".$event['name']."</a> ".date("l jS \of F Y h:i:s A",strtotime($event['time']))."<br>";
 
-	echo "<div class = 'description'>".substr($event['description'],0,35)."...</div>";
+	echo "<div class = 'description'>".substr($event['description'],0,15)."...</div>";
   }
 //echo "</td>";
   }
@@ -252,7 +259,7 @@ margin-top: 10%;
 margin-right: 20%;	
 margin-left: 65%;
 z-index: 1;
-//float:top;
+//float:left;
 //width: 200px ;
 //background: white;
 //opacity:0.9;
@@ -279,7 +286,7 @@ font-size:35;
 }
 .description{
 color: #585858;
-font-size:22;
+font-size:24;
 }
 tr{
 text-align:center;
