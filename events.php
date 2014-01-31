@@ -101,6 +101,7 @@ echo "<div id='links'>";
 //if session user is set (from logging in), show link to create event and log out
 if(isset($_SESSION['User'])){
         echo "Welcome  ".$_SESSION['User']."</br>";
+	echo "<a href='./MyEvents.php'>My Events</a></br>";
         echo "<a href='./CreateEvent.php'>Create Event</a></br>";
         echo "<a href='./CreateOrganization.php'>Create Organization</a></br>";
         echo "<a href='./addMembers.php'>Add Members to Org</a></br>";
@@ -133,6 +134,7 @@ else{ //if session user is not set, show link to log in and to create user
 //link to search page
 
 ?>
+
 <html>
 
 <body>
