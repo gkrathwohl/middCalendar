@@ -141,7 +141,7 @@
 
 		<div class="main"> 
 			<?php 
-
+if(isset($_SESSION['User'])){
 
 //set up the connection to the database
 define('DB_SERVER','panther.cs.middlebury.edu');
@@ -196,8 +196,10 @@ while ($row = mysqli_fetch_array($result)) {
 
 }
 }
-
-
+}
+else{
+	echo "YOU MUST BE LOGGED IN TO APPROVE EVENTS";
+}
 
 
 ?>
