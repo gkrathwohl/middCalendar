@@ -1,5 +1,8 @@
-<?php session_start(); ?>
 
+
+
+
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,23 +12,26 @@
 			.logo {
 				position: fixed;
 				margin-top: 1%;
+				width: 24%;
+				height: 15%;
 				margin-left: 38%;
 				z-index: 2;
 				opacity: .6;
 			}
-			.header {				
+			.header {					
 
-				position:fixed;				
+
+			position:absolute;				
 				background-color:gray;
 				opacity: .9;
 				width:100%;
-				height: 15px;
-				padding-top: 20px;
-				padding-bottom: 20px;
+				height: 2%;
+				padding-top: 1%;
+				padding-bottom: 1%;
 				padding-right: 10%;
 				padding-left: 10%;
-				border-width: 3px;
-				border-color: black;
+				//border-width: 3%;
+				//border-color: black;
 				margin-top: 10%;
 				margin-right: 0%;
 				margin-left: -1%;
@@ -43,15 +49,15 @@
 			.main {
 				position: fixed;
 				background-color: white;
-				opacity: .8;
+				opacity: .9;
 				width: 60%;
-				height: 250px;
-				overflow-y: auto;
+				height: 50%;
+				overflow-y: scroll;
 				padding-top: 5%;
 				padding-bottom: 5%;
 				padding-right: 10%;
 				padding-left: 10%;
-				border-width: 3px;
+				border-width: 3%;
 				border-color: black;
 				border-radius: 25px;
 				margin-top: 15%;
@@ -62,12 +68,12 @@
 			}
 			p {
 				font-family:"Times New Roman";
-				font-size:20px;
+				font-size:150%;
 			}
 			a:link {
 				font-size: 1em;
 				font-weight: normal;
-				color: white;  
+				color: black;  
 				text-decoration:none;
 				
 			}
@@ -80,7 +86,7 @@
 			a:hover {
 				font-size: 1.2em;
 				font-weight: bold;
-				color: white;  
+				color: black;  
 				text-decoration:none;
 			}
 			a:active {
@@ -89,12 +95,13 @@
 				color: white;  
 				text-decoration:none;
 			}
+			
 		</style>
 	</head>
 	
 	<body background=1003background1.png>
 		<div class="logo">
-			<img src=MiddleburyPanther.jpg width="400px" height="145px">		
+			<img src=MiddleburyPanther.jpg width="100%" height="100%">		
 		</div>		
 		<div class="header">
 			<?php
@@ -132,31 +139,79 @@
 				}
 			?>
 		</div>
+
+
+
 		<div class="main"> 
-			<?php
-				if(isset($_GET["eid"])) {
-					$eid = $_GET["eid"];
-				}
+			<?php 
+				if(isset($_SESSION['User'])){
+
 				//set up the connection to the database
 				define('DB_SERVER','panther.cs.middlebury.edu');
 				define('DB_USERNAME','wschaaf');
 				define('DB_PASSWORD','wschaaf');
-				define('DB_DATABASE','wschaaf_Calendar');
-				$con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die("Could not connect");
-				$sql="SELECT * FROM Events WHERE eid = ".$eid;
 
-				if (!mysqli_query($con,$sql)) {
-					die('Error: ' . mysqli_error());
+				define('DB_DATABASE','wschaaf_Calendar');
+
+				$con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE) or die("Could not connect");
+
+				$sql="SELECT supervisor FROM Users WHERE uid = ".$_SESSION[uid];
+
+				if (!mysqli_query($con,$sql))
+				{
+				  die('Error: ' . mysqli_error());
 				}
-				else {
-					//execute the SQL query
-					$result = mysqli_query($con,$sql);
+				else
+				{
+				 $result = mysqli_query($con,$sql);
+				 $row = mysqli_fetch_array($result);
+
+				if($row['supervisor']==0){
+					echo "must be supervisor to approve events";
+				}else{
+
+
+				$sql="SELECT * FROM Events WHERE date >= CURDATE() AND approved = 0";
+
+				if (!mysqli_query($con,$sql))
+				{
+				  die('Error: ' . mysqli_error());
 				}
+				else
+				{
+				 //execute the SQL query
+				 $result = mysqli_query($con,$sql);
+				}
+
+				echo "</br>All unapproved events (where date >= curdate): </br>";
+				if(count($result) == 0){
+				echo "There are no unapproved events";
+				}else{
 				while ($row = mysqli_fetch_array($result)) {
-					//print result
-					echo "<b>Name:</b> ".$row['name']." </br> <b>Location:</b>  ".$row['location']." </br> <b>Date:</b>  ".$row['date']." </br> <b>Time:</b>  ".$row['time']." </br> <b>Genre: </b> ".$row['genre']." </br><b> Description: </b> ".$row['description'];
+				 
+				 //print result
+				 echo "<a href='./eventInfo.php?eid=".$row['eid']."'>".$row['name']."</a> <a href='./approve.php?eid=".$row['eid']."'>Approve</a> <br>";
 				}
-			?>
+				}
+
+
+
+
+				}
+				}
+				}
+				else{
+					echo "YOU MUST BE LOGGED IN TO APPROVE EVENTS";
+				}
+
+
+?>
 		</div>	
+
+
+
+
+
 	</body>
 </html>
+

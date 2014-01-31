@@ -70,8 +70,20 @@ $date = htmlspecialchars(str_replace("/","-",substr($event->category, 0, 10)));
 	   
 	$a =  explode("<br/>", $event->description);
 	$location = $a[0];
-	$desc = $a[3];
 
+$desc = "";
+
+      for ($x=2; $x<=count($a); $x++){
+	
+	//$desc = $a[3];
+  //$desc  $event->description;
+    $desc = $desc . $a[$x] . "<br/>";
+    
+    }
+
+//echo htmlspecialchars($desc);
+//$cleanString = filter_var($dirtyString, FILTER_SANITIZE_STRING);
+$desc = filter_var(substr($desc, 5), FILTER_SANITIZE_STRING); 
 
 
 //good ole regular expression to find the time. 
