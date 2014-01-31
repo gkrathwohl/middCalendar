@@ -71,7 +71,7 @@
 			a:link {
 				font-size: 1em;
 				font-weight: normal;
-				color: white;  
+				color: black;  
 				text-decoration:none;
 				
 			}

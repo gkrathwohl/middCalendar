@@ -138,23 +138,26 @@
 
 
                 <div class="main"> 
-                        <p>Create an Event:</p>
-						<p>Please make something somewhat interesting</p><br>
-						<form action='InsertEvent.php' id='newEvent' method='post'>
-							Middlebury College ID:<input type="text" name="uid" value ="<?php echo $_SESSION['uid'];?>" required/><br>
-								Event Name: <input type="text" name="name" required /> <br>
-								Date: <input type="date" name="date" placeholder="yyyy-mm-dd"required /> <br>        
-								Time: <input type="time" name="time" placeholder="--:-- --" required /> <br>
-								Location: <input type="text" name="location" required /> <br>
-								Select Genre: <select name="genre" form='newEvent'>
-										<option value="Dance"> Dance </option>
-										<option value="Party"> Party </option>
-										<option value="Clam Bake"> Clam Bake </option>
-										<option value="Pineapple"> Pineapple </option>
-										<option value="Sports"> Sports </option>
+			<?php
+			if(isset($_SESSION['User'])){
+                        echo "<p>Create an Event:</p>";
+			echo "<p>Please make something somewhat interesting</p><br>";
+			echo "<form action='InsertEvent.php' id='newEvent' method='post'>";
+			echo "Middlebury College ID:<input type='text' name='uid' value = '".$_SESSION['uid']."' required/><br>";
+			echo "Event Name: <input type='text' name='name' required /> <br>";
+			echo "Date: <input type='date' name='date' placeholder='yyyy-mm-dd'required /> <br>";        
+			echo "Time: <input type='time' name='time' placeholder='--:-- --' required /> <br>";
+			echo "Location: <input type='text' name='location' required /> <br>";
+			echo "Select Genre: <select name='genre' form='newEvent'>
+										<option value='Dance'> Dance </option>
+										<option value='Party'> Party </option>
+										<option value='Clam Bake'> Clam Bake </option>
+										<option value='Pineapple'> Pineapple </option>
+										<option value='Sports'> Sports </option>
 								</select> <br>
-								Organization: <select name='orgName' form='newEvent'>
-										<?php
+								Organization: <select name='orgName' form='newEvent'>";
+			
+
 												define('DB_SERVER','panther.cs.middlebury.edu');
 												define('DB_USERNAME','wschaaf');
 												define('DB_PASSWORD','wschaaf');
@@ -171,11 +174,19 @@
 												while ($row = mysqli_fetch_array($result)) {
 														echo "<option value='".$row[orgName]."'>".$row[orgName]."</option>";
 												}
-										?>
-								</select><br>
-							<textarea name="description" rows="5" cols="40" placeholder="Enter description here" required></textarea> <br>
-							<input type="submit" value="Create Event!"/> <br> <br>
-						</form>
+if(count(mysqli_fetch_array($result))==0){
+	echo "<option value ='wrong'> You must belong to an organization to create an event.</option>";
+}
+							
+			echo "</select><br>
+							<textarea name='description' rows='5' cols='40' placeholder='Enter description here' required></textarea> <br>
+							<input type='submit' value='Create Event!'/> <br> <br>
+						</form>";
+}
+else{
+	echo "YOU MUST BE LOGGED IN TO CREATE AN EVENT!!!!!";
+}
+?>
                 </div>        
         </body>
 </html>
