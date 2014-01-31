@@ -75,6 +75,25 @@ foreach($result1 as $row){
 
 
 
+
+
+
+
+
+
+
+$days = array('Sunday', 'Monday', 'Tuesday', 'Wednesday','Thursday','Friday', 'Saturday');
+$months = array('01'=>'January', '02'=>'February', '03'=>'March', '04'=>'April','05'=>'May','06'=>'June', '07'=>'July', '08'=>'August', '09'=>'September', '10'=>'October', '11'=>'November', '12'=>'December');
+
+echo "</br>";
+echo "<div id='content'>";
+
+echo "<div id='table1'>";
+
+
+/////////////////////////////
+
+
 echo "<div id='links'>";
 
 
@@ -121,10 +140,11 @@ else{ //if session user is not set, show link to log in and to create user
 
 
 
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <SCRIPT LANGUAGE="javascript">
+$(links).hide();
 function toggle() {
-
+$(links).show();
 }
 
 </SCRIPT>
@@ -171,12 +191,10 @@ echo "</div>";
 
 
 
-$days = array('Sunday', 'Monday', 'Tuesday', 'Wednesday','Thursday','Friday', 'Saturday');
-$months = array('01'=>'January', '02'=>'February', '03'=>'March', '04'=>'April','05'=>'May','06'=>'June', '07'=>'July', '08'=>'August', '09'=>'September', '10'=>'October', '11'=>'November', '12'=>'December');
 
-echo "</br>";
-echo "<div id='content'>";
-echo "<div id='table1'>";
+//////////////////////////
+
+echo "<div id='more'><button onclick='toggle()'>More</button></div>";
 echo "<table>";
 echo "<tr>";
 foreach($byDate as $key => $value)
@@ -238,7 +256,7 @@ color:#0066CC;
 #links{
 border-radius: 25px;
 color: pink;
-position:fixed;				
+//position:fixed;				
 background-color:black;
 opacity: .90;
 width:10%;
@@ -252,13 +270,13 @@ margin-top: 10%;
 margin-right: 20%;	
 margin-left: 65%;
 z-index: 1;
-//float:top;
+//float:left;
 //width: 200px ;
 //background: white;
 //opacity:0.9;
 }
 #content{
-float:left;
+//float:left;
 }
 #table1{
 border-radius: 25px;
@@ -294,6 +312,9 @@ td{
 vertical-align:top;
 width:200;
 }
+#more{
+text-align:left;
+}
 
 
 </style>
@@ -305,3 +326,4 @@ width:200;
 
 </body>
 </html>
+ 
