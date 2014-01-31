@@ -166,17 +166,23 @@
 												$sql="SELECT * FROM BelongsTo WHERE uid='".$_SESSION['uid']."'";
 												if (!mysqli_query($con,$sql)) {
 														die('Error: ' . mysqli_error());
-												}
+}
 												else {
 														$result = mysqli_query($con,$sql);
-												}
-												echo "";
-												while ($row = mysqli_fetch_array($result)) {
-														echo "<option value='".$row[orgName]."'>".$row[orgName]."</option>";
-												}
-if(count(mysqli_fetch_array($result))==0){
-	echo "<option value ='wrong'> You must belong to an organization to create an event.</option>";
 }
+
+$count = 0;
+												
+while ($row = mysqli_fetch_array($result)) {
+
+$count += 1;
+													echo "<option value='".$row[orgName]."'>".$row[orgName]."</option>";
+}
+
+if($count == 0)	{
+	echo "<option value ='wrong'> You must belong to an organization to create an event.</option>";
+}	
+
 							
 			echo "</select><br>
 							<textarea name='description' rows='5' cols='40' placeholder='Enter description here' required></textarea> <br>
