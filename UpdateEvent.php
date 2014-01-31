@@ -45,7 +45,6 @@
                                 background-color: white;
                                 opacity: .9;
                                 width: 60%;
-                                height: 40%;
                                 overflow-y: scroll;
                                 padding-top: 5%;
                                 padding-bottom: 5%;
@@ -62,32 +61,7 @@
                         }
                         p {
                                 font-family:"Times New Roman";
-                                font-size:150%;
-                        }
-                        a:link {
-                                font-size: 1em;
-                                font-weight: normal;
-                                color: white;
-                                text-decoration:none;
-                                
-                        }
-                        a:visited {
-                                font-size: 1em;
-                                font-weight: normal;
-                                color: white;
-                                text-decoration:none;
-                        }
-                        a:hover {
-                                font-size: 1.2em;
-                                font-weight: bold;
-                                color: white;
-                                text-decoration:none;
-                        }
-                        a:active {
-                                font-size: 1.2em;
-                                font-weight: bold;
-                                color: white;
-                                text-decoration:none;
+                                font-size:1em;
                         }
                 </style>
         </head>

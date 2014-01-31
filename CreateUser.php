@@ -3,8 +3,6 @@
 <html>
         <head>
                 <style>
-                
-                        
                         .logo {
                                 position: fixed;
                                 margin-top: 1%;
@@ -146,10 +144,29 @@
 							<SCRIPT LANGUAGE="javascript">
 								var goodColor = "#66cc66";
 								var badColor = "#ff6666";
+								function checkName() {
+									var name = document.getElementById('name');
+									var message = document.getElementById('nameConfirm');
+									var submitButton = document.getElementById('submit');
+									var nameRegex = /\S+\s\S+/;
+									if(nameRegex.test(name.value)) {
+										name.style.backgroundColor = "#ffffff";
+										message.style.color = goodColor;
+										message.innerHTML = "Valid Name";
+										submitButton.type = "submit";
+									}
+									else {
+										name.style.backgroundColor = badColor;
+										message.style.color = badColor;
+										message.innerHTML = "Not valid name!";
+										submitButton.type = "hidden";
+									}
+								}
 								function checkEmail() {
 									var email = document.getElementById('email');
 									var message = document.getElementById('emailConfirm');
-									var emailRegex = /\S+@\S+\.\S+/;
+									var submitButton = document.getElementById('submit');
+									var emailRegex = /\S+@middlebury.edu/;
 									if(emailRegex.test(email.value)) {
 										email.style.backgroundColor = "#ffffff";
 										message.style.color = goodColor;
@@ -162,6 +179,24 @@
 										message.innerHTML = "Not valid email!";
 										submitButton.type = "hidden";
 									}
+								}
+								function checkUid() {
+									var uid = document.getElementById('uid');
+									var message = document.getElementById('uidConfirm');
+									var submitButton = document.getElementById('submit');
+									var uidRegex = /\d{8}/;
+									if(uidRegex.test(uid.value)) {
+										uid.style.backgroundColor = "#ffffff";
+										message.style.color = goodColor;
+										message.innerHTML = "Valid";
+										submitButton.type = "submit";
+									}
+									else {
+										uid.style.backgroundColor = badColor;
+										message.style.color = badColor;
+										message.innerHTML = "Invalid Middlebury ID!";
+										submitButton.type = "hidden";
+									}
 								}		
 								function checkPass() {
 									//Store the password field objects into variables ...
@@ -170,11 +205,11 @@
 									//Store the Confimation Message Object ...
 									var message = document.getElementById('passwordConfirm');
 									var submitButton = document.getElementById('submit');
-									var passRegex = /\W?\w+/;
+									var passRegex = /\W?\w{6}/;
 									if(!passRegex.test(pass1.value)) {
 										pass2.style.backgroundColor = badColor;
 										message.style.color = badColor;
-										message.innerHTML = "Your password does not match the requirements.";
+										message.innerHTML = "Your password must be at least 6 characters long.";
 										submitButton.type = "hidden";
 									}			
 									else if((pass1.value == pass2.value)){
@@ -191,17 +226,23 @@
 										message.innerHTML = "Passwords Do Not Match!";
 										submitButton.type = "hidden";
 									}
-								} 
+								}
 							</SCRIPT>
 							<!--This creates the insert boxes-->
 							<form action="insertUser.php" method="post">
-								<input type="text" name="name" placeholder="Name" required /> <br>
 								<div class="fieldWrapper">
-									<input type= "text" name="email" id="email" placeholder="Email" onkeyup="checkEmail(); return false;" type="text" required>
+									<input name="name" id="name" placeholder="Name" onkeyup="checkName(); return false;" type="text" required>
+									<span id="nameConfirm" class="confirmMessage"></span>
+								</div>
+								<div class="fieldWrapper">
+									<input name="email" id="email" placeholder="Email" onkeyup="checkEmail(); return false;" type="text" required>
 									<span id="emailConfirm" class="confirmMessage"></span>
 								</div>
-								<input type="text" name="uid" placeholder="Middlebury College ID" required /> <br>
-									<input type="password" name="pw" id="pass1" placeholder="Password" required> <br>
+								<div class="fieldWrapper">
+									<input name="uid" id="uid" placeholder="Middlebury College ID" onkeyup="checkUid(); return false;" type="text" required>
+									<span id="uidConfirm" class="confirmMessage"></span>
+								</div>
+								<input type="password" name="pw" id="pass1" placeholder="Password" required> <br>
 								<div class="fieldWrapper">
 									<input type="password" name="pass2" id="pass2" placeholder="Confirm Password" onkeyup="checkPass(); return false;" type="password" required>
 									<span id="passwordConfirm" class="confirmMessage"></span>

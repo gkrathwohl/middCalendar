@@ -45,7 +45,6 @@
                                 background-color: white;
                                 opacity: .8;
                                 width: 60%;
-                                height: 40%;
                                 overflow-y: scroll;
                                 padding-top: 5%;
                                 padding-bottom: 5%;
@@ -62,7 +61,7 @@
                         }
                         p {
                                 font-family:"Times New Roman";
-                                font-size:150%;
+                                font-size:1em;
                         }
                         .header a:link {
                                 font-size: 1em;
@@ -89,30 +88,6 @@
                                 color: white;
                                 text-decoration:none;
                         }
-			a:link {
-                                font-size: 1em;
-                                font-weight: normal;
-                                color: black;
-                                text-decoration:none;
-                                
-                        }
-                        a:visited {
-                                font-size: 1em;
-                                font-weight: normal;
-                                color: black;
-                                text-decoration:none;
-                        }
-                        a:hover {
-                                font-size: 1em;
-                                font-weight: bold;
-                                color: black;
-                                text-decoration:underline;
-                        }
-                        a:active {
-                                font-size: 1em;
-                                font-weight: bold;
-                                color: black;
-                                text-decoration:underline;
                 </style>
         </head>
         
