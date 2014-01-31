@@ -163,7 +163,7 @@
 	echo $genre.":<br>";
 	while ($row = mysqli_fetch_array($result)) {
 		echo "<a href='./eventInfo.php?eid=".$row['eid']."'>".$row['name']."</a><br>";
-		echo "Date: ".$row[date]."<br>";
+		echo "Date: ".$row[date]."<br><br/>";
 	
 	}
 	//close connection

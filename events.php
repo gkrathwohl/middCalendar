@@ -176,9 +176,9 @@ Search: <input type="text" name="Search"  /> <br> <br>
 <option value="Party"> Party </option>
 <option value="Clam Bake"> Clam Bake </option>
 <option value="Pineapple"> Pineapple </option>
-<option value="drinking"> drinking </option>
+<option value="OldCalendar"> Old Calendar </option>
 <option value="sports"> sports </option>
-<input type="button" value="Go" name="btm_submit" onclick="validate()">
+<input type="submit" value="Go" name="btm_submit">
 </select></p>
 <p>
 </p>
@@ -272,7 +272,7 @@ padding-right: 10%;
 //padding-left: 10%;
 border-width: 3px;
 border-color: black;
-margin-top: 10%;
+margin-top: 4%;
 margin-right: 20%;	
 //margin-left: 65%;
 z-index: 1;
