@@ -1,10 +1,12 @@
 <?php session_start(); ?>  
 <meta name="viewport" content="width=device-width, user-scalable=yes">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
 <?php 
 //start session
 //must happen before anything else on the page
 
-//print_r($_SESSION);
+
 
 //set up the connection to the database
 define('DB_SERVER','panther.cs.middlebury.edu');
@@ -45,7 +47,6 @@ if (!mysqli_query($con,$sql))
 }
 else
 {
- //execute the SQL query
  $result = mysqli_query($con,$sql);
 }
 
@@ -60,17 +61,10 @@ while ($row = mysqli_fetch_array($result)) {
 $result1[] = $row;
 }
 
-//usort($result1, "sortFunction");
-
-//while ($row = mysqli_fetch_array($result)) {
- //for each event, display its name as a link to detailed event info, with eid in the url
-// echo "<a href='./eventInfo.php?eid=".$row['eid']."'>".$row['name']."</a><br>";
 foreach($result1 as $row){
   $byDate[$row['date']][]=$row;
 }
-//}
 
-//print_r($byDate);
 
 
 
@@ -91,89 +85,6 @@ echo "</br>";
 echo "<div id='content'>";
 
 echo "<div id='table1'>";
-
-//echo "<div id='more'><a id='b1' href='javascript:toggle();'>Search</a></div>";
-/////////////////////////////
-
-
-echo "<div id='links'>";
-
-
-
-//if session user is set (from logging in), show link to create event and log out
-if(isset($_SESSION['User'])){
-        echo "Welcome  ".$_SESSION['User']."</br>";
-	echo "<a href='./MyEvents.php'>My Events</a></br>";
-        echo "<a href='./CreateEvent.php'>Create Event</a></br>";
-        echo "<a href='./CreateOrganization.php'>Create Organization</a></br>";
-        echo "<a href='./addMembers.php'>Add Members to Org</a></br>";
-        $sql2="SELECT supervisor FROM Users WHERE uid = '$_SESSION[uid]'";
-  if (!mysqli_query($con,$sql2))
-  {
-    die('Error: ' . mysqli_error());
-  }
-  else
-  {
- //execute the SQL query
-    $result2 = mysqli_query($con,$sql2);
-        
-  }
-        
-        $row = mysqli_fetch_array($result2);
-      if($row['supervisor']==1){
-        
-              echo "<a href='./approveEvents.php'>Approve Events</a></br>";
-      }
- 
-        echo "<a href='./logout.php'>Don't forget to logout</a><br>";
-}
-else{ //if session user is not set, show link to log in and to create user
-        $_SESSION['User'] = null;
-        echo "<a href='./login.php'>Log In</a></br>";
-        echo "<a href='./CreateUser.php'>Create User</a></br>";
-}
-
-//link to search page
-
-?>
-
-<html>
-
-<body>
-
-
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<SCRIPT LANGUAGE="javascript">
-
-
-
-$(links).hide();
-
-function toggle() {
-	if($(links).is(':visible')){
-	$(links).hide();
-	document.getElementById('b1').innerHTML = "Search";
-}else{
-	$(links).show();
-	document.getElementById('b1').innerHTML = "Less";
-}
-
-}
-
-</SCRIPT>
-
-<?php
-echo "</div>";
-
-
-
-
-
-
-
-//////////////////////////
-
 
 echo "<table>";
 echo "<tr>";
@@ -225,24 +136,29 @@ mysql_close($con)
 <script>
 
 $('div.event').click(function() {
-
-  			//$('div.event').removeClass("selected");
-			//$('div.event').removeClass("unselected");
-  			//$(this).addClass("selected");
-$(this).toggleClass("selected");
-  $(this).find(".description").toggle();
-$(".event").not(this).find(".description").hide();
-$(".event").not(this).removeClass("selected");
- // $(this).css("background-color","#C4C4C4");
-//$(".event").not(this).css("background-color","white");
-
-
-//$(this).css("background","-webkit-linear-gradient(#C4C4C4, #C4C4C4, #C4C4C4, white");
+	$(".event").not(this).find(".description").hide();
+	$(".event").not(this).removeClass("selected");
+	$(this).toggleClass("selected");
+	$(this).find(".description").toggle();
+	
 });
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46764554-3', 'middlebury.edu');
+  ga('send', 'pageview');
+
 </script>
+
 
 </body>
 </html>
+
+
 <style>
 
 ::selection { background: transparent; }
@@ -342,13 +258,4 @@ color:black;
 </html>
  
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-46764554-3', 'middlebury.edu');
-  ga('send', 'pageview');
-
-</script>
