@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>slideToggle demo</title>
+  <style>
+  p {
+    width: 400px;
+  }
+  </style>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+ 
+<div class='event'>
+	event </br>
+	<description>
+		descripiton
+	</description>
+</div>
+
+</br>
+
+<div class='event'>
+	event1 </br>
+	<description>
+		descripiton1
+	</description>
+</div>
+
+
+
+ 
+<script>
+$('div.event').click(function() {
+  $(this).children().toggle();
+});
+</script>
+ 
+</body>
+</html>
