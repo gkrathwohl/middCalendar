@@ -90,7 +90,7 @@ echo "<div id='content'>";
 
 echo "<div id='table1'>";
 
-echo "<div id='more'><a id='b1' href='javascript:toggle();'>More</a></div>";
+echo "<div id='more'><a id='b1' href='javascript:toggle();'>Less</a></div>";
 /////////////////////////////
 
 
@@ -143,7 +143,7 @@ else{ //if session user is not set, show link to log in and to create user
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <SCRIPT LANGUAGE="javascript">
-$(links).hide();
+//$(links).hide();
 function toggle() {
 if($(links).is(':visible')){
 $(links).hide();

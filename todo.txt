@@ -1,3 +1,11 @@
+Mobile:
+
+say no events if aren't any.
+don't add '...' if description is less than cutoff length
+
+
+
+
 Database stuff:
 
 -- for events, featured = 0/1?

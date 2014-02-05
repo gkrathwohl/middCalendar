@@ -1,8 +1,12 @@
 <?php session_start(); ?>  
+
+
+
 <meta name="viewport" content="width=device-width, user-scalable=yes">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <?php 
+
 //start session
 //must happen before anything else on the page
 
@@ -38,7 +42,7 @@ date_add($date,date_interval_create_from_date_string("7 days"));
 //echo "Seven days from now is: ".date_format($date,"Y-m-d")."</br>";
 
 //sql query selects all events between today's date and 6 days from now
-$sql="SELECT * FROM Events WHERE date BETWEEN '".date_format($date1,"Y-m-d")."' AND '".date_format($date,"Y-m-d")."' AND genre='featured' AND approved=1 ORDER BY date, time";
+$sql="SELECT * FROM Events WHERE date BETWEEN '".date_format($date1,"Y-m-d")."' AND '".date_format($date,"Y-m-d")."' AND approved=1 ORDER BY date, time";
 
 
 if (!mysqli_query($con,$sql))
@@ -89,10 +93,8 @@ echo "<div id='table1'>";
 echo "<table>";
 echo "<tr>";
 echo "<div id = 'title'> <a href='./about.html'>middCalendar</a> </div><br/>";
-//echo "<div id = 'title'>middCalendar </div><br/>";
-//echo "<div id = 'info' hidden> middCalendar </div><br/>";
 
-echo "<a href='./mobileAll'>Show all +</a>";
+echo "<a href='./mobile'>Just Featured -</a>";
 
 foreach($byDate as $key => $value)
   {
@@ -118,7 +120,7 @@ echo "</div>";
 	echo "</div>";
 //echo "<div class='break'>------------------------ </div>";
 echo "</br>";
-echo "</br>";
+//echo "</br>";
   }
 //echo "</td>";
 
@@ -140,14 +142,14 @@ mysql_close($con)
 
 <script>
 
+
 $('div.event').click(function() {
 	$(".event").not(this).find(".description").slideUp();
 	$(".event").not(this).removeClass("selected");
 	$(this).toggleClass("selected");
 	$(this).find(".description").slideToggle();
+	
 });
-
-
 
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
