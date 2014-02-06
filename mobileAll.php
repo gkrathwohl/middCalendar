@@ -244,7 +244,6 @@ text-align:left;
 table, th, td
 {
 font-size:20em;
-border: 1px solid black;
 text-align:center;
 }
 td{
